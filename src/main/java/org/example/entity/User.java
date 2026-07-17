@@ -26,6 +26,8 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<BodyMeasurement> bodyMeasurements;
 
+    //kommentar
+
     public User(int id, String name, LocalDate dateOfBirth, double height, String gender, List<Workout> workouts,
                 List<MealPlan> mealPlans, List<BodyMeasurement> bodyMeasurements) {
         this.id = id;
