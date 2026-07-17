@@ -44,6 +44,7 @@ Dieses Projekjt ist eine Java-Anwendung zur Verwaltung von Trainingsplänen, Mah
 -main - Startpunkt der Anwendung
 
 
+## Skizzenleiter
 User
 
 │
