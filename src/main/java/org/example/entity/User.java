@@ -40,6 +40,9 @@ public class User {
         this.bodyMeasurements = bodyMeasurements;
     }
 
+    public User() {
+    }
+
     public int getId() {
         return id;
     }
