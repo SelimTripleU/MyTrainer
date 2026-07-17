@@ -3,7 +3,7 @@
 Fitness Tracker |
 Dieses Projekjt ist eine Java-Anwendung zur Verwaltung von Trainingsplänen, Mahlzeiten und Fitnessfortschritten. Die Anwendung ermöglischt es Benutzern, Übungen zu erstellen, Gerichte zu entdecken und seinen Fortschritt zu Dokumentieren.
 
-Funktion |
+##Funktion |
 
 Benutzerverwaltung 
 Erstellen und Verwalten von Trainingsplänen
@@ -12,7 +12,7 @@ Speichern von Trainingseinheiten
 Entdeckung allerlei Gerichten
 Datenbankbindung mit Hibernate
 
-Verwendete Technologien |
+##Verwendete Technologien |
 
 Java
 Hibernate
@@ -21,7 +21,7 @@ MySQL
 Git und GitHub
 DAO-Pattern
 
-Projektstruktur |
+##Projektstruktur |
 
 entity - Enthält die Entity-Klassen
 dao- Enthält die DAO Klassen für den Datenbankzugriff
