@@ -86,4 +86,5 @@ public class WorkoutExercise {
         public void setExercise(Exercise exercise) {
                 this.exercise = exercise;
         }
+
 }
