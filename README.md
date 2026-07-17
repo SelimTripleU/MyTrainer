@@ -28,3 +28,13 @@ dao- Enthält die DAO Klassen für den Datenbankzugriff
 util- Enthält die HibernateUtil
 service - Enthält die Geschäftslogik
 main - Startpunkt der Anwendung
+
+
+User
+│
+├── BodyMeasurement
+├── Workout
+│   └── WorkoutExercise
+│       └── Exercise
+├── MealPlan
+│   └── Meal
