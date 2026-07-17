@@ -9,7 +9,7 @@ Dieses Projekjt ist eine Java-Anwendung zur Verwaltung von Trainingsplänen, Mah
 
 -Erstellen und Verwalten von Trainingsplänen
 
-Bmi Rechner
+-Bmi Rechner
 
 -Speichern von Trainingseinheiten
 
@@ -19,18 +19,46 @@ Bmi Rechner
 
 ## Verwendete Technologien 
 
-Java
-Hibernate
-JPA
-MySQL
-Git und GitHub
-DAO-Pattern
+-Java
+
+-Hibernate
+
+-JPA
+
+-MySQL
+
+-Git und GitHub
+
+-DAO-Pattern
 
 ## Projektstruktur 
 
-entity - Enthält die Entity-Klassen
-dao- Enthält die DAO Klassen für den Datenbankzugriff
-util- Enthält die HibernateUtil
-service - Enthält die Geschäftslogik
-main - Startpunkt der Anwendung
+-entity - Enthält die Entity-Klassen
+
+-dao- Enthält die DAO Klassen für den Datenbankzugriff
+
+-util- Enthält die HibernateUtil
+
+-service - Enthält die Geschäftslogik
+
+-main - Startpunkt der Anwendung
+
+
+User
+
+│
+
+├── BodyMeasurement
+
+├── Workout
+
+│   └── WorkoutExercise
+
+│       └── Exercise
+
+├── MealPlan
+
+│   └── Meal
+
+
 
