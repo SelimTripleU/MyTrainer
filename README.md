@@ -62,6 +62,8 @@ User
 │   └── Meal
 
 
+## ER-Diagramm
+
 ```mermaid
 erDiagram
     User ||--o{ Workout : creates
