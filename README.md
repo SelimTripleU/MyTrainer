@@ -74,8 +74,6 @@ erDiagram
     User {
         int user_id PK
         string name
-        string email
-        string password
         int age
         float height
         datetime created_at
