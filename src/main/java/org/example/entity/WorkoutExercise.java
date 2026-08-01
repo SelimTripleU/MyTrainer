@@ -21,6 +21,9 @@ public class WorkoutExercise {
         @JoinColumn(name = "exercise_id")
         private Exercise exercise;
 
+        public WorkoutExercise() {
+        }
+
         public WorkoutExercise(int id, int sets, int repetitions, double weight, int resttime, Workout workout, Exercise exercise) {
                 this.id = id;
                 this.sets = sets;

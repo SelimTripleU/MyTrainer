@@ -26,6 +26,9 @@ public class Workout {
     @OneToMany(mappedBy = "workout")
     private List<WorkoutExercise> workoutExercises;
 
+    public Workout() {
+    }
+
     public Workout(int id, LocalDate datum, LocalTime startTime, LocalTime endTime, int duration,
                    String notes, User user, List<WorkoutExercise> workoutExercises) {
         this.id = id;

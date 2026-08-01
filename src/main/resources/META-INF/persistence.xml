@@ -5,8 +5,13 @@
         <provider>
             org.hibernate.jpa.HibernatePersistenceProvider
         </provider>
-        <class>com.todoapp.model.TodoItem</class>
-        <class>com.todoapp.model.Category</class>
+        <class>org.example.entity.User</class>
+        <class>org.example.entity.BodyMeasurement</class>
+        <class>org.example.entity.Exercise</class>
+        <class>org.example.entity.Workout</class>
+        <class>org.example.entity.WorkoutExercise</class>
+        <class>org.example.entity.Meal</class>
+        <class>org.example.entity.MealPlan</class>
         <properties>
             <property name="jakarta.persistence.jdbc.driver"
                       value="com.mysql.cj.jdbc.Driver"/>

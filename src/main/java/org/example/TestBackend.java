@@ -31,8 +31,11 @@ public class TestBackend {
                 18,
                 user
         );
-
-        System.out.println("Measurement ID: " + measurement.getId());
+        System.out.println("Body Measurement fat: " + measurement.getBodyfat());
+        measurement.setBodyfat(99.9);
+        bodyMeasurementService.modifyBodyMeasurement(measurement);
+        BodyMeasurement modifiedBodyMeasurement = bodyMeasurementService.findBodyMeasurementById(measurement.getId());
+        System.out.println("Neues Bodyfat " + modifiedBodyMeasurement.getBodyfat());
     }
 
 

@@ -19,6 +19,9 @@ public class Meal {
         private MealPlan mealPlan;
 
 
+        public Meal() {
+        }
+
         public Meal(int id, String name, int calories, double protein, double carbohydrates, double fat, MealPlan mealPlan) {
                 this.id = id;
                 this.name = name;

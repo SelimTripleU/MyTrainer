@@ -24,4 +24,20 @@ public class BodyMeasurementService {
 
        return bodyMeasurement;
    }
+
+   public void deleteBodyMeasurement(int i) {
+       BodyMeasurement bodyMeasToBeDeleted = bodyMeasurementRepository.findById(Long.valueOf(i));
+
+       bodyMeasurementRepository.delete(bodyMeasToBeDeleted);
+
+   }
+
+   public void modifyBodyMeasurement(BodyMeasurement modifiedBodyMeasurement) {
+       bodyMeasurementRepository.update(modifiedBodyMeasurement);
+   }
+
+   public BodyMeasurement findBodyMeasurementById(int id) {
+       return bodyMeasurementRepository.findById(Long.valueOf(id));
+   }
+
 }

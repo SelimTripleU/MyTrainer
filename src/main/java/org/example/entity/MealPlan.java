@@ -21,6 +21,9 @@ public class MealPlan {
         @OneToMany(mappedBy = "mealPlan")
         private List<Meal> meals;
 
+        public MealPlan() {
+        }
+
         public MealPlan(int id, LocalDate datum, int targetCalories, User user, List<Meal> meals) {
                 this.id = id;
                 this.datum = datum;
