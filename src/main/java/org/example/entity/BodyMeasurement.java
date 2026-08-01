@@ -21,9 +21,13 @@ public class BodyMeasurement {
         @JoinColumn(name = "user_id")
         private User user;
 
-        public double getBmi() {
-            return weight / (height * height);
+        public BodyMeasurement() {
+
         }
+
+//        public double getBmi() {
+//            return weight / (height * height);
+//        }
 
         public BodyMeasurement(int id, LocalDate datum, double weight, double height, double bodyfat, User user) {
                 this.id = id;
