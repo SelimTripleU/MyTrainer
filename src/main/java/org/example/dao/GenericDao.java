@@ -20,7 +20,7 @@ public class GenericDao<T> {
         try {
             tx = em.getTransaction();
             tx.begin();
-            em.merge(entity);
+            em.persist(entity);
             tx.commit();
         } catch (Exception e) {
             if (tx != null && tx.isActive()) tx.rollback();
