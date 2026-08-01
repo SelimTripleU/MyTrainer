@@ -62,4 +62,76 @@ User
 │   └── Meal
 
 
+## ER-Diagramm
 
+```mermaid
+erDiagram
+    User ||--o{ Workout : creates
+    Workout ||--o{ WorkoutExercise : contains
+    Exercise ||--o{ WorkoutExercise : used_in
+    User ||--o{ Mealplan : owns
+    Mealplan ||--o{ Meal : contains
+    User ||--o{ BodyMeasurement : records
+
+    User {
+        int user_id PK
+        string name
+        int age
+        float height
+        datetime created_at
+    }
+
+    Workout {
+        int workout_id PK
+        int user_id FK
+        string title
+        date date
+        int duration
+    }
+
+    WorkoutExercise {
+        int workout_exercise_id PK
+        int workout_id FK
+        int exercise_id FK
+        int sets
+        int reps
+        float weight
+        int duration
+    }
+
+    Exercise {
+        int exercise_id PK
+        string name
+        string muscle_group
+        string description
+    }
+
+    Mealplan {
+        int mealplan_id PK
+        int user_id FK
+        string title
+        date start_date
+        date end_date
+    }
+
+    Meal {
+        int meal_id PK
+        int mealplan_id FK
+        string name
+        int calories
+        float protein
+        float carbs
+        float fat
+    }
+
+    BodyMeasurement {
+        int measurement_id PK
+        int user_id FK
+        date measurement_date
+        float weight
+        float body_fat_percentage
+        float chest
+        float waist
+        float hips
+    }
+```
