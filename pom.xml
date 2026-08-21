@@ -66,7 +66,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>org.example.MyTrainer</mainClass>
+                    <mainClass>org.example.App</mainClass>
                     <options>
                         <option>--add-opens=javafx.base/com.sun.javafx.reflect=ALL-UNNAMED</option>
                     </options>

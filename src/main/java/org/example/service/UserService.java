@@ -4,6 +4,7 @@ import org.example.dao.UserRepository;
 import org.example.entity.User;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class UserService {
 
@@ -17,6 +18,10 @@ public class UserService {
         user.setGender(gender);
         userRepository.save(user);
         return user;
+    }
+
+    public List<User> findAllUsers() {
+        return userRepository.findAll();
     }
 
 }
