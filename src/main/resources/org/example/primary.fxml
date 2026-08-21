@@ -2,33 +2,60 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.PrimaryController"
-            prefWidth="600" prefHeight="400">
+            fx:controller="org.example.controller.PrimaryController"
+            prefWidth="420" prefHeight="500">
     <top>
-        <Label text="MyTrainer" style="-fx-font-size: 22px; -fx-font-weight: bold;">
+        <Label text="MyTrainer" style="-fx-font-size: 28px;">
             <BorderPane.margin>
-                <Insets top="16" left="16" bottom="8" right="16"/>
+                <Insets top="20" left="20" bottom="10" right="20"/>
             </BorderPane.margin>
         </Label>
     </top>
     <center>
-        <ListView fx:id="userListView">
+        <VBox spacing="24">
             <BorderPane.margin>
-                <Insets left="16" right="16"/>
+                <Insets left="20" right="20"/>
             </BorderPane.margin>
-        </ListView>
+
+            <GridPane hgap="20" vgap="10">
+                <Label text="Name" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                <Label text="Datum" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <DatePicker fx:id="datumPicker" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                <Label text="Altes Gewicht" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+                <HBox spacing="4" alignment="CENTER_LEFT" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                    <TextField fx:id="altesGewichtField" editable="false" prefWidth="50"/>
+                    <Label text="kg"/>
+                </HBox>
+
+                <Label text="Neues Gewicht" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                <HBox spacing="4" alignment="CENTER_LEFT" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                    <TextField fx:id="neuesGewichtField" prefWidth="50"/>
+                    <Label text="kg"/>
+                </HBox>
+
+                <Button text="Speichern" onAction="#onSpeichern" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+            </GridPane>
+
+            <VBox spacing="8" alignment="CENTER">
+                <Button text="Kalender" maxWidth="Infinity"/>
+                <Button text="Essen" maxWidth="Infinity"/>
+                <Button text="BMI-Rechner" maxWidth="Infinity"/>
+                <Button text="Diagramm" maxWidth="Infinity"/>
+                <Button text="Reset" maxWidth="Infinity" onAction="#onReset"/>
+            </VBox>
+        </VBox>
     </center>
-    <bottom>
-        <Button text="Nutzer laden" onAction="#onLoadUsers">
-            <BorderPane.margin>
-                <Insets top="8" bottom="16" left="16" right="16"/>
-            </BorderPane.margin>
-        </Button>
-    </bottom>
 </BorderPane>
