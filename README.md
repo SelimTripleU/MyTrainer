@@ -1,3 +1,5 @@
+Bitte Gewicht und Bmi Rechner alle 2 Wochen ändern :)
+
 # MyTrainer
 
 Fitness Tracker 
