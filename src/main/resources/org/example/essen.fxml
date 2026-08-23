@@ -10,14 +10,15 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.example.controller.EssenController"
-            prefWidth="380" prefHeight="480">
+            stylesheets="@style.css"
+            prefWidth="450" prefHeight="580">
     <center>
         <VBox spacing="14">
             <BorderPane.margin>
                 <Insets top="20" left="20" bottom="20" right="20"/>
             </BorderPane.margin>
 
-            <Label text="Essen" style="-fx-font-size: 22px;"/>
+            <Label text="Essen" styleClass="title" style="-fx-font-size: 22px;"/>
 
             <VBox spacing="4">
                 <Label fx:id="kalorienLabel" style="-fx-font-size: 15px; -fx-font-weight: bold;" wrapText="true"/>

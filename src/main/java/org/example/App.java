@@ -17,7 +17,7 @@ public class App extends Application {
 
         Stage primaryStage = stage;
         primaryStage.setTitle("MyTrainer");
-        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 

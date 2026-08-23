@@ -13,14 +13,15 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.example.controller.BmiController"
-            prefWidth="360" prefHeight="480">
+            stylesheets="@style.css"
+            prefWidth="430" prefHeight="580">
     <center>
         <VBox spacing="16">
             <BorderPane.margin>
                 <Insets top="20" left="20" bottom="20" right="20"/>
             </BorderPane.margin>
 
-            <Label text="BMI-Rechner" style="-fx-font-size: 22px;"/>
+            <Label text="BMI-Rechner" styleClass="title" style="-fx-font-size: 22px;"/>
 
             <GridPane hgap="12" vgap="10">
                 <Label text="Geschlecht" GridPane.columnIndex="0" GridPane.rowIndex="0"/>

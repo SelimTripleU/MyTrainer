@@ -15,19 +15,20 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.example.controller.TagController"
-            prefWidth="340" prefHeight="380">
+            stylesheets="@style.css"
+            prefWidth="410" prefHeight="450">
     <center>
         <VBox spacing="16">
             <BorderPane.margin>
                 <Insets top="20" left="20" bottom="20" right="20"/>
             </BorderPane.margin>
 
-            <Label fx:id="datumLabel" style="-fx-font-size: 20px;"/>
+            <Label fx:id="datumLabel" styleClass="title" style="-fx-font-size: 20px;"/>
 
             <HBox spacing="10" alignment="CENTER_LEFT">
                 <Label text="Trainiert?"/>
-                <ToggleButton fx:id="jaButton" text="Ja"/>
-                <ToggleButton fx:id="neinButton" text="Nein"/>
+                <ToggleButton fx:id="jaButton" text="Ja" styleClass="btn-success"/>
+                <ToggleButton fx:id="neinButton" text="Nein" styleClass="btn-danger"/>
             </HBox>
 
             <Separator/>

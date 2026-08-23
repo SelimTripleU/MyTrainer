@@ -80,6 +80,7 @@ public class CalendarController {
             int zeile = position / 7;
 
             Button tagButton = new Button(String.valueOf(tag));
+            tagButton.getStyleClass().add("day-button");
             tagButton.setPrefSize(48, 36);
             tagButton.setMaxWidth(Double.MAX_VALUE);
 

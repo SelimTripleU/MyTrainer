@@ -75,24 +75,33 @@ public class DiagrammController {
             return;
         }
 
-        // zählt pro Monat, an wie vielen Tagen trainiert wurde; Monate ohne jeden Eintrag werden nicht gezeigt
+        // zählt pro Monat, an wie vielen Tagen trainiert bzw. nicht trainiert wurde; Monate ohne jeden Eintrag werden nicht gezeigt
         Map<YearMonth, Long> trainierteTageProMonat = new TreeMap<>();
+        Map<YearMonth, Long> nichtTrainierteTageProMonat = new TreeMap<>();
         for (CalendarEntry eintrag : eintraege) {
             YearMonth monat = YearMonth.from(eintrag.getDatum());
             trainierteTageProMonat.putIfAbsent(monat, 0L);
+            nichtTrainierteTageProMonat.putIfAbsent(monat, 0L);
+
             if (eintrag.isTrainiert()) {
                 trainierteTageProMonat.merge(monat, 1L, Long::sum);
+            } else {
+                nichtTrainierteTageProMonat.merge(monat, 1L, Long::sum);
             }
         }
 
-        XYChart.Series<String, Number> serie = new XYChart.Series<>();
-        serie.setName("Trainierte Tage");
+        XYChart.Series<String, Number> trainiertSerie = new XYChart.Series<>();
+        trainiertSerie.setName("Trainiert");
+
+        XYChart.Series<String, Number> nichtTrainiertSerie = new XYChart.Series<>();
+        nichtTrainiertSerie.setName("Nicht trainiert");
 
         for (Map.Entry<YearMonth, Long> eintrag : trainierteTageProMonat.entrySet()) {
             String monatsLabel = eintrag.getKey().atDay(1).format(MONAT_FORMAT);
-            serie.getData().add(new XYChart.Data<>(monatsLabel, eintrag.getValue()));
+            trainiertSerie.getData().add(new XYChart.Data<>(monatsLabel, eintrag.getValue()));
+            nichtTrainiertSerie.getData().add(new XYChart.Data<>(monatsLabel, nichtTrainierteTageProMonat.get(eintrag.getKey())));
         }
 
-        trainingsChart.getData().add(serie);
+        trainingsChart.getData().addAll(trainiertSerie, nichtTrainiertSerie);
     }
 }

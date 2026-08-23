@@ -11,14 +11,15 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.example.controller.CalendarController"
-            prefWidth="420" prefHeight="420">
+            stylesheets="@style.css"
+            prefWidth="500" prefHeight="500">
     <top>
         <HBox spacing="12" alignment="CENTER">
             <BorderPane.margin>
                 <Insets top="16" left="16" bottom="8" right="16"/>
             </BorderPane.margin>
             <Button text="&lt;" onAction="#onVorherigerMonat"/>
-            <Label fx:id="monatLabel" style="-fx-font-size: 18px;" maxWidth="Infinity" HBox.hgrow="ALWAYS" alignment="CENTER"/>
+            <Label fx:id="monatLabel" styleClass="title" style="-fx-font-size: 18px;" maxWidth="Infinity" HBox.hgrow="ALWAYS" alignment="CENTER"/>
             <Button text="&gt;" onAction="#onNaechsterMonat"/>
         </HBox>
     </top>

@@ -15,14 +15,15 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.example.controller.UebungenController"
-            prefWidth="400" prefHeight="640">
+            stylesheets="@style.css"
+            prefWidth="470" prefHeight="740">
     <center>
         <VBox spacing="12">
             <BorderPane.margin>
                 <Insets top="20" left="20" bottom="20" right="20"/>
             </BorderPane.margin>
 
-            <Label text="Übungen" style="-fx-font-size: 22px;"/>
+            <Label text="Übungen" styleClass="title" style="-fx-font-size: 22px;"/>
 
             <HBox spacing="10" alignment="CENTER_LEFT">
                 <Label text="Muskelgruppe"/>

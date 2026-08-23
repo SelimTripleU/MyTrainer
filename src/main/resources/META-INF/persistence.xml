@@ -25,7 +25,7 @@
             <property name="jakarta.persistence.jdbc.password"
                       value="Selimleila0309"/>
             <property name="hibernate.hbm2ddl.auto"
-                      value="create"/>
+                      value="update"/>
             <property name="hibernate.show_sql"
                       value="true"/>
             <property name="hibernate.format_sql"
