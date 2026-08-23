@@ -1,14 +1,21 @@
 package org.example.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import org.example.App;
 import org.example.entity.User;
 import org.example.service.BodyMeasurementService;
 import org.example.service.UserService;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.prefs.Preferences;
 
@@ -57,6 +64,22 @@ public class PrimaryController {
         }
 
         return change;
+    }
+
+    @FXML
+    private void onBmiRechner() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("bmi.fxml"));
+            Parent root = fxmlLoader.load();
+
+            Stage bmiStage = new Stage();
+            bmiStage.setTitle("BMI-Rechner");
+            bmiStage.initModality(Modality.APPLICATION_MODAL);
+            bmiStage.setScene(new Scene(root));
+            bmiStage.show();
+        } catch (IOException e) {
+            zeigeFehler("BMI-Rechner konnte nicht geöffnet werden.");
+        }
     }
 
     @FXML

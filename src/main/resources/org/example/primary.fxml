@@ -50,7 +50,7 @@
             </GridPane>
 
             <VBox spacing="8" alignment="CENTER">
-                <Button text="BMI-Rechner" maxWidth="Infinity"/>
+                <Button text="BMI-Rechner" maxWidth="Infinity" onAction="#onBmiRechner"/>
                 <Button text="Kalender" maxWidth="Infinity"/>
                 <Button text="Übungen" maxWidth="Infinity"/>
                 <Button text="Essen" maxWidth="Infinity"/>
