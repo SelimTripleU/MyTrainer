@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import org.example.App;
 import org.example.entity.User;
 import org.example.service.BodyMeasurementService;
+import org.example.service.CalendarEntryService;
 import org.example.service.UserService;
 
 import java.io.IOException;
@@ -35,6 +36,10 @@ public class PrimaryController {
 
     private final UserService userService = new UserService();
     private final BodyMeasurementService bodyMeasurementService = new BodyMeasurementService();
+    private final CalendarEntryService calendarEntryService = new CalendarEntryService();
+
+    // Referenz auf einen bereits geöffneten Kalender, damit er sich bei einem Reset sofort aktualisiert
+    private CalendarController offenerCalendarController;
 
     // speichert Name und Altes Gewicht lokal, damit sie beim nächsten Start noch da sind
     private final Preferences prefs = Preferences.userNodeForPackage(PrimaryController.class);
@@ -83,7 +88,41 @@ public class PrimaryController {
     }
 
     @FXML
+    private void onKalender() {
+        String name = nameField.getText();
+        if (name == null || name.isBlank()) {
+            zeigeFehler("Bitte zuerst einen Namen eingeben.");
+            return;
+        }
+
+        User user = userService.findUserByName(name);
+        if (user == null) {
+            user = userService.createUser(name, null, 0, null);
+        }
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("calendar.fxml"));
+            Parent root = fxmlLoader.load();
+
+            offenerCalendarController = fxmlLoader.getController();
+            offenerCalendarController.init(user);
+
+            Stage calendarStage = new Stage();
+            calendarStage.setTitle("Trainingskalender");
+            calendarStage.setScene(new Scene(root));
+            calendarStage.show();
+        } catch (IOException e) {
+            zeigeFehler("Kalender konnte nicht geöffnet werden.");
+        }
+    }
+
+    @FXML
     private void onReset() {
+        User user = userService.findUserByName(nameField.getText());
+        if (user != null) {
+            calendarEntryService.loescheAlleEintraegeFuerUser(user);
+        }
+
         nameField.clear();
         datumPicker.setValue(null);
         altesGewichtField.clear();
@@ -91,6 +130,10 @@ public class PrimaryController {
 
         prefs.remove("name");
         prefs.remove("altesGewicht");
+
+        if (offenerCalendarController != null) {
+            offenerCalendarController.aktualisiere();
+        }
     }
 
     @FXML

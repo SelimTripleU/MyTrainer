@@ -51,7 +51,7 @@
 
             <VBox spacing="8" alignment="CENTER">
                 <Button text="BMI-Rechner" maxWidth="Infinity" onAction="#onBmiRechner"/>
-                <Button text="Kalender" maxWidth="Infinity"/>
+                <Button text="Kalender" maxWidth="Infinity" onAction="#onKalender"/>
                 <Button text="Übungen" maxWidth="Infinity"/>
                 <Button text="Essen" maxWidth="Infinity"/>
                 <Button text="Diagramm" maxWidth="Infinity"/>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.controller.CalendarController"
+            prefWidth="420" prefHeight="420">
+    <top>
+        <HBox spacing="12" alignment="CENTER">
+            <BorderPane.margin>
+                <Insets top="16" left="16" bottom="8" right="16"/>
+            </BorderPane.margin>
+            <Button text="&lt;" onAction="#onVorherigerMonat"/>
+            <Label fx:id="monatLabel" style="-fx-font-size: 18px;" maxWidth="Infinity" HBox.hgrow="ALWAYS" alignment="CENTER"/>
+            <Button text="&gt;" onAction="#onNaechsterMonat"/>
+        </HBox>
+    </top>
+    <center>
+        <VBox spacing="8">
+            <BorderPane.margin>
+                <Insets left="16" right="16" bottom="16"/>
+            </BorderPane.margin>
+            <GridPane fx:id="wochentageGridPane" hgap="4">
+                <Label text="Mo" GridPane.columnIndex="0" alignment="CENTER" maxWidth="Infinity" GridPane.hgrow="ALWAYS"/>
+                <Label text="Di" GridPane.columnIndex="1" alignment="CENTER" maxWidth="Infinity" GridPane.hgrow="ALWAYS"/>
+                <Label text="Mi" GridPane.columnIndex="2" alignment="CENTER" maxWidth="Infinity" GridPane.hgrow="ALWAYS"/>
+                <Label text="Do" GridPane.columnIndex="3" alignment="CENTER" maxWidth="Infinity" GridPane.hgrow="ALWAYS"/>
+                <Label text="Fr" GridPane.columnIndex="4" alignment="CENTER" maxWidth="Infinity" GridPane.hgrow="ALWAYS"/>
+                <Label text="Sa" GridPane.columnIndex="5" alignment="CENTER" maxWidth="Infinity" GridPane.hgrow="ALWAYS"/>
+                <Label text="So" GridPane.columnIndex="6" alignment="CENTER" maxWidth="Infinity" GridPane.hgrow="ALWAYS"/>
+            </GridPane>
+            <GridPane fx:id="tageGridPane" hgap="4" vgap="4"/>
+        </VBox>
+    </center>
+</BorderPane>
