@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import org.example.entity.User;
 import org.example.service.BodyMeasurementService;
 import org.example.service.UserService;
@@ -38,6 +39,24 @@ public class PrimaryController {
 
         nameField.textProperty().addListener((obs, oldValue, newValue) -> prefs.put("name", newValue));
         altesGewichtField.textProperty().addListener((obs, oldValue, newValue) -> prefs.put("altesGewicht", newValue));
+
+        // Gewicht: nur Ziffern und ein Komma, insgesamt maximal 4 Ziffern (z.B. 88,24)
+        neuesGewichtField.setTextFormatter(new TextFormatter<>(this::filtereGewicht));
+    }
+
+    private TextFormatter.Change filtereGewicht(TextFormatter.Change change) {
+        String neuerText = change.getControlNewText();
+
+        if (!neuerText.matches("\\d{0,4}(,\\d{0,4})?")) {
+            return null;
+        }
+
+        long ziffernAnzahl = neuerText.chars().filter(Character::isDigit).count();
+        if (ziffernAnzahl > 4) {
+            return null;
+        }
+
+        return change;
     }
 
     @FXML
@@ -63,7 +82,7 @@ public class PrimaryController {
 
         double neuesGewicht;
         try {
-            neuesGewicht = Double.parseDouble(neuesGewichtField.getText());
+            neuesGewicht = Double.parseDouble(neuesGewichtField.getText().replace(',', '.'));
         } catch (NumberFormatException e) {
             zeigeFehler("Neues Gewicht muss eine Zahl sein.");
             return;

@@ -50,9 +50,10 @@
             </GridPane>
 
             <VBox spacing="8" alignment="CENTER">
-                <Button text="Kalender" maxWidth="Infinity"/>
-                <Button text="Essen" maxWidth="Infinity"/>
                 <Button text="BMI-Rechner" maxWidth="Infinity"/>
+                <Button text="Kalender" maxWidth="Infinity"/>
+                <Button text="Übungen" maxWidth="Infinity"/>
+                <Button text="Essen" maxWidth="Infinity"/>
                 <Button text="Diagramm" maxWidth="Infinity"/>
                 <Button text="Reset" maxWidth="Infinity" onAction="#onReset"/>
             </VBox>
