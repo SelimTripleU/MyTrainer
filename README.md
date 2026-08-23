@@ -33,6 +33,8 @@ Dieses Projekjt ist eine Java-Anwendung zur Verwaltung von Trainingsplänen, Mah
 
 -DAO-Pattern
 
+-JavaFX
+
 ## Projektstruktur 
 
 -entity - Enthält die Entity-Klassen
