@@ -181,18 +181,18 @@
 
 /* Trainingsfrequenz: eigene Farben statt Standard-Orange, angelehnt an Grün/Rot im restlichen Kalender */
 
-.trainings-chart .default-color0.chart-bar {
+.training-chart .default-color0.chart-bar {
     -fx-bar-fill: #43a047;
 }
 
-.trainings-chart .default-color1.chart-bar {
+.training-chart .default-color1.chart-bar {
     -fx-bar-fill: #e53935;
 }
 
-.trainings-chart .default-color0.chart-legend-item-symbol {
+.training-chart .default-color0.chart-legend-item-symbol {
     -fx-background-color: #43a047;
 }
 
-.trainings-chart .default-color1.chart-legend-item-symbol {
+.training-chart .default-color1.chart-legend-item-symbol {
     -fx-background-color: #e53935;
 }

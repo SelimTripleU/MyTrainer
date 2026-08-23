@@ -12,7 +12,7 @@ public class BodyMeasurement {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int id;
 
-        private LocalDate datum;
+        private LocalDate date;
         private double weight;
         private double height;
         private double bodyfat;
@@ -29,9 +29,9 @@ public class BodyMeasurement {
 //            return weight / (height * height);
 //        }
 
-        public BodyMeasurement(int id, LocalDate datum, double weight, double height, double bodyfat, User user) {
+        public BodyMeasurement(int id, LocalDate date, double weight, double height, double bodyfat, User user) {
                 this.id = id;
-                this.datum = datum;
+                this.date = date;
                 this.weight = weight;
                 this.height = height;
                 this.bodyfat = bodyfat;
@@ -46,12 +46,12 @@ public class BodyMeasurement {
                 this.id = id;
         }
 
-        public LocalDate getDatum() {
-                return datum;
+        public LocalDate getDate() {
+                return date;
         }
 
-        public void setDatum(LocalDate datum) {
-                this.datum = datum;
+        public void setDate(LocalDate date) {
+                this.date = date;
         }
 
         public double getWeight() {

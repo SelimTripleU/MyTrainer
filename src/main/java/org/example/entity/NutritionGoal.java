@@ -2,38 +2,34 @@ package org.example.entity;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
-
 @Entity
-public class CalendarEntry {
+public class NutritionGoal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private LocalDate date;
-    private boolean trained;
-    private String muscleGroup;
     private int calories;
+    private double protein;
     private double fat;
     private double carbohydrates;
+    private String goal;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    public CalendarEntry() {
+    public NutritionGoal() {
     }
 
-    public CalendarEntry(int id, LocalDate date, boolean trained, String muscleGroup, int calories,
-                          double fat, double carbohydrates, User user) {
+    public NutritionGoal(int id, int calories, double protein, double fat, double carbohydrates,
+                          String goal, User user) {
         this.id = id;
-        this.date = date;
-        this.trained = trained;
-        this.muscleGroup = muscleGroup;
         this.calories = calories;
+        this.protein = protein;
         this.fat = fat;
         this.carbohydrates = carbohydrates;
+        this.goal = goal;
         this.user = user;
     }
 
@@ -45,36 +41,20 @@ public class CalendarEntry {
         this.id = id;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public boolean isTrained() {
-        return trained;
-    }
-
-    public void setTrained(boolean trained) {
-        this.trained = trained;
-    }
-
-    public String getMuscleGroup() {
-        return muscleGroup;
-    }
-
-    public void setMuscleGroup(String muscleGroup) {
-        this.muscleGroup = muscleGroup;
-    }
-
     public int getCalories() {
         return calories;
     }
 
     public void setCalories(int calories) {
         this.calories = calories;
+    }
+
+    public double getProtein() {
+        return protein;
+    }
+
+    public void setProtein(double protein) {
+        this.protein = protein;
     }
 
     public double getFat() {
@@ -91,6 +71,14 @@ public class CalendarEntry {
 
     public void setCarbohydrates(double carbohydrates) {
         this.carbohydrates = carbohydrates;
+    }
+
+    public String getGoal() {
+        return goal;
+    }
+
+    public void setGoal(String goal) {
+        this.goal = goal;
     }
 
     public User getUser() {

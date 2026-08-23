@@ -14,7 +14,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.controller.TagController"
+            fx:controller="org.example.controller.DayController"
             stylesheets="@style.css"
             prefWidth="410" prefHeight="450">
     <center>
@@ -23,31 +23,31 @@
                 <Insets top="20" left="20" bottom="20" right="20"/>
             </BorderPane.margin>
 
-            <Label fx:id="datumLabel" styleClass="title" style="-fx-font-size: 20px;"/>
+            <Label fx:id="dateLabel" styleClass="title" style="-fx-font-size: 20px;"/>
 
             <HBox spacing="10" alignment="CENTER_LEFT">
                 <Label text="Trainiert?"/>
-                <ToggleButton fx:id="jaButton" text="Ja" styleClass="btn-success"/>
-                <ToggleButton fx:id="neinButton" text="Nein" styleClass="btn-danger"/>
+                <ToggleButton fx:id="yesButton" text="Ja" styleClass="btn-success"/>
+                <ToggleButton fx:id="noButton" text="Nein" styleClass="btn-danger"/>
             </HBox>
 
             <Separator/>
 
             <GridPane hgap="12" vgap="10">
                 <Label text="Muskelgruppe" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                <ChoiceBox fx:id="muskelgruppeChoiceBox" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <ChoiceBox fx:id="muscleGroupChoiceBox" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
                 <Label text="Kalorien (kcal)" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                <TextField fx:id="kalorienField" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="80"/>
+                <TextField fx:id="caloriesField" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="80"/>
 
                 <Label text="Fette (g)" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-                <TextField fx:id="fettField" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="80"/>
+                <TextField fx:id="fatField" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="80"/>
 
                 <Label text="Kohlenhydrate (g)" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-                <TextField fx:id="kohlenhydrateField" GridPane.columnIndex="1" GridPane.rowIndex="3" prefWidth="80"/>
+                <TextField fx:id="carbohydratesField" GridPane.columnIndex="1" GridPane.rowIndex="3" prefWidth="80"/>
             </GridPane>
 
-            <Button text="Speichern" onAction="#onSpeichern" maxWidth="Infinity"/>
+            <Button text="Speichern" onAction="#onSave" maxWidth="Infinity"/>
         </VBox>
     </center>
 </BorderPane>

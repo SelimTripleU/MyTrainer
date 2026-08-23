@@ -13,7 +13,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.controller.DiagrammController"
+            fx:controller="org.example.controller.DiagramController"
             stylesheets="@style.css"
             prefWidth="600" prefHeight="850">
     <top>
@@ -32,30 +32,30 @@
 
                 <Label text="Gewichtsverlauf" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
                 <StackPane prefHeight="300">
-                    <LineChart fx:id="gewichtChart">
+                    <LineChart fx:id="weightChart">
                         <xAxis>
-                            <CategoryAxis fx:id="xAchse" label="Datum"/>
+                            <CategoryAxis fx:id="weightXAxis" label="Datum"/>
                         </xAxis>
                         <yAxis>
-                            <NumberAxis fx:id="yAchse" label="Gewicht (kg)" forceZeroInRange="false"/>
+                            <NumberAxis fx:id="weightYAxis" label="Gewicht (kg)" forceZeroInRange="false"/>
                         </yAxis>
                     </LineChart>
-                    <Label fx:id="gewichtLeerHinweisLabel"
+                    <Label fx:id="weightEmptyHintLabel"
                            text="Noch keine Gewichtsdaten vorhanden. Bitte im Hauptfenster ein Gewicht speichern."
                            wrapText="true" visible="false" managed="false"/>
                 </StackPane>
 
                 <Label text="Trainingsfrequenz" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
                 <StackPane prefHeight="300">
-                    <BarChart fx:id="trainingsChart" styleClass="trainings-chart">
+                    <BarChart fx:id="trainingChart" styleClass="training-chart">
                         <xAxis>
-                            <CategoryAxis fx:id="trainingsXAchse" label="Monat"/>
+                            <CategoryAxis fx:id="trainingXAxis" label="Monat"/>
                         </xAxis>
                         <yAxis>
-                            <NumberAxis fx:id="trainingsYAchse" label="Trainierte Tage"/>
+                            <NumberAxis fx:id="trainingYAxis" label="Trainierte Tage"/>
                         </yAxis>
                     </BarChart>
-                    <Label fx:id="trainingsLeerHinweisLabel"
+                    <Label fx:id="trainingEmptyHintLabel"
                            text="Noch keine Kalender-Einträge vorhanden. Bitte im Kalender Trainingstage eintragen."
                            wrapText="true" visible="false" managed="false"/>
                 </StackPane>

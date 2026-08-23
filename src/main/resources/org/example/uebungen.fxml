@@ -14,7 +14,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.controller.UebungenController"
+            fx:controller="org.example.controller.ExercisesController"
             stylesheets="@style.css"
             prefWidth="470" prefHeight="740">
     <center>
@@ -27,10 +27,10 @@
 
             <HBox spacing="10" alignment="CENTER_LEFT">
                 <Label text="Muskelgruppe"/>
-                <ChoiceBox fx:id="muskelgruppeChoiceBox"/>
+                <ChoiceBox fx:id="muscleGroupChoiceBox"/>
             </HBox>
 
-            <ListView fx:id="uebungenListView" prefHeight="120"/>
+            <ListView fx:id="exercisesListView" prefHeight="120"/>
 
             <Separator/>
 
@@ -39,22 +39,22 @@
                 <TextField fx:id="setsField" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="70"/>
 
                 <Label text="Wiederholungen" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                <TextField fx:id="wiederholungenField" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="70"/>
+                <TextField fx:id="repetitionsField" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="70"/>
 
                 <Label text="Gewicht (kg)" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-                <TextField fx:id="gewichtField" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="70"/>
+                <TextField fx:id="weightField" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="70"/>
 
                 <Label text="Pause (Sek.)" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-                <TextField fx:id="pauseField" GridPane.columnIndex="1" GridPane.rowIndex="3" prefWidth="70"/>
+                <TextField fx:id="restTimeField" GridPane.columnIndex="1" GridPane.rowIndex="3" prefWidth="70"/>
             </GridPane>
 
-            <Button text="Zum heutigen Training hinzufügen" onAction="#onHinzufuegen" maxWidth="Infinity"/>
+            <Button text="Zum heutigen Training hinzufügen" onAction="#onAdd" maxWidth="Infinity"/>
 
             <Separator/>
 
             <Label text="Heutiges Training" style="-fx-font-weight: bold;"/>
-            <ListView fx:id="heuteListView" prefHeight="120"/>
-            <Button text="Ausgewählte Übung löschen" onAction="#onLoeschen" maxWidth="Infinity"/>
+            <ListView fx:id="todayListView" prefHeight="120"/>
+            <Button text="Ausgewählte Übung löschen" onAction="#onDelete" maxWidth="Infinity"/>
         </VBox>
     </center>
 </BorderPane>

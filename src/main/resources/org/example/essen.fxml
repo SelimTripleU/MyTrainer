@@ -9,7 +9,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.controller.EssenController"
+            fx:controller="org.example.controller.FoodController"
             stylesheets="@style.css"
             prefWidth="450" prefHeight="580">
     <center>
@@ -21,16 +21,16 @@
             <Label text="Essen" styleClass="title" style="-fx-font-size: 22px;"/>
 
             <VBox spacing="4">
-                <Label fx:id="kalorienLabel" style="-fx-font-size: 15px; -fx-font-weight: bold;" wrapText="true"/>
+                <Label fx:id="caloriesLabel" style="-fx-font-size: 15px; -fx-font-weight: bold;" wrapText="true"/>
                 <Label fx:id="proteinLabel"/>
-                <Label fx:id="fettLabel"/>
-                <Label fx:id="kohlenhydrateLabel"/>
+                <Label fx:id="fatLabel"/>
+                <Label fx:id="carbohydratesLabel"/>
             </VBox>
 
             <Separator/>
 
             <Label text="Rezepte für dein Ziel" style="-fx-font-weight: bold;"/>
-            <ListView fx:id="rezepteListView" prefHeight="260"/>
+            <ListView fx:id="recipesListView" prefHeight="260"/>
         </VBox>
     </center>
 </BorderPane>

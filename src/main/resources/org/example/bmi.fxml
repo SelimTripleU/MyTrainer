@@ -25,38 +25,38 @@
 
             <GridPane hgap="12" vgap="10">
                 <Label text="Geschlecht" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                <ChoiceBox fx:id="geschlechtChoiceBox" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <ChoiceBox fx:id="genderChoiceBox" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
                 <Label text="Alter (Jahre)" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                <TextField fx:id="alterField" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="80"/>
+                <TextField fx:id="ageField" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="80"/>
 
                 <Label text="Größe (cm)" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-                <TextField fx:id="groesseField" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="80"/>
+                <TextField fx:id="heightField" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="80"/>
 
                 <Label text="Gewicht (kg)" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-                <TextField fx:id="gewichtField" GridPane.columnIndex="1" GridPane.rowIndex="3" prefWidth="80"/>
+                <TextField fx:id="weightField" GridPane.columnIndex="1" GridPane.rowIndex="3" prefWidth="80"/>
 
                 <Label text="Aktivitätslevel" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-                <ChoiceBox fx:id="aktivitaetChoiceBox" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                <ChoiceBox fx:id="activityChoiceBox" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
                 <Label text="Ziel" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-                <ChoiceBox fx:id="zielChoiceBox" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                <ChoiceBox fx:id="goalChoiceBox" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
             </GridPane>
 
-            <Button text="Berechnen" onAction="#onBerechnen" maxWidth="Infinity"/>
+            <Button text="Berechnen" onAction="#onCalculate" maxWidth="Infinity"/>
 
             <Separator/>
 
             <VBox spacing="6">
-                <Label fx:id="kalorienLabel" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                <Label fx:id="caloriesLabel" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
                 <Label fx:id="proteinLabel"/>
-                <Label fx:id="fettLabel"/>
-                <Label fx:id="kohlenhydrateLabel"/>
+                <Label fx:id="fatLabel"/>
+                <Label fx:id="carbohydratesLabel"/>
 
                 <Separator/>
 
                 <Label fx:id="bmiLabel"/>
-                <Label fx:id="kategorieLabel"/>
+                <Label fx:id="categoryLabel"/>
             </VBox>
         </VBox>
     </center>

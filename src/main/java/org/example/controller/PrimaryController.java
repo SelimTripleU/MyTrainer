@@ -26,45 +26,45 @@ public class PrimaryController {
     private TextField nameField;
 
     @FXML
-    private DatePicker datumPicker;
+    private DatePicker datePicker;
 
     @FXML
-    private TextField altesGewichtField;
+    private TextField oldWeightField;
 
     @FXML
-    private TextField neuesGewichtField;
+    private TextField newWeightField;
 
     private final UserService userService = new UserService();
     private final BodyMeasurementService bodyMeasurementService = new BodyMeasurementService();
     private final CalendarEntryService calendarEntryService = new CalendarEntryService();
 
-    // Referenz auf einen bereits geöffneten Kalender, damit er sich bei einem Reset sofort aktualisiert
-    private CalendarController offenerCalendarController;
+    // reference to an already opened calendar, so it refreshes immediately on a reset
+    private CalendarController openCalendarController;
 
-    // speichert Name und Altes Gewicht lokal, damit sie beim nächsten Start noch da sind
+    // stores name and old weight locally, so they're still there on the next start
     private final Preferences prefs = Preferences.userNodeForPackage(PrimaryController.class);
 
     @FXML
     private void initialize() {
         nameField.setText(prefs.get("name", ""));
-        altesGewichtField.setText(prefs.get("altesGewicht", ""));
+        oldWeightField.setText(prefs.get("oldWeight", ""));
 
         nameField.textProperty().addListener((obs, oldValue, newValue) -> prefs.put("name", newValue));
-        altesGewichtField.textProperty().addListener((obs, oldValue, newValue) -> prefs.put("altesGewicht", newValue));
+        oldWeightField.textProperty().addListener((obs, oldValue, newValue) -> prefs.put("oldWeight", newValue));
 
-        // Gewicht: nur Ziffern und ein Komma, insgesamt maximal 4 Ziffern (z.B. 88,24)
-        neuesGewichtField.setTextFormatter(new TextFormatter<>(this::filtereGewicht));
+        // weight: digits and one comma only, at most 4 digits total (e.g. 88,24)
+        newWeightField.setTextFormatter(new TextFormatter<>(this::filterWeight));
     }
 
-    private TextFormatter.Change filtereGewicht(TextFormatter.Change change) {
-        String neuerText = change.getControlNewText();
+    private TextFormatter.Change filterWeight(TextFormatter.Change change) {
+        String newText = change.getControlNewText();
 
-        if (!neuerText.matches("\\d{0,4}(,\\d{0,4})?")) {
+        if (!newText.matches("\\d{0,4}(,\\d{0,4})?")) {
             return null;
         }
 
-        long ziffernAnzahl = neuerText.chars().filter(Character::isDigit).count();
-        if (ziffernAnzahl > 4) {
+        long digitCount = newText.chars().filter(Character::isDigit).count();
+        if (digitCount > 4) {
             return null;
         }
 
@@ -72,8 +72,8 @@ public class PrimaryController {
     }
 
     @FXML
-    private void onBmiRechner() {
-        User user = ermittleAktuellenUser();
+    private void onBmiCalculator() {
+        User user = getCurrentUser();
         if (user == null) {
             return;
         }
@@ -91,13 +91,13 @@ public class PrimaryController {
             bmiStage.setScene(new Scene(root));
             bmiStage.show();
         } catch (IOException e) {
-            zeigeFehler("BMI-Rechner konnte nicht geöffnet werden.");
+            showError("BMI-Rechner konnte nicht geöffnet werden.");
         }
     }
 
     @FXML
-    private void onKalender() {
-        User user = ermittleAktuellenUser();
+    private void onCalendar() {
+        User user = getCurrentUser();
         if (user == null) {
             return;
         }
@@ -106,21 +106,21 @@ public class PrimaryController {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("calendar.fxml"));
             Parent root = fxmlLoader.load();
 
-            offenerCalendarController = fxmlLoader.getController();
-            offenerCalendarController.init(user);
+            openCalendarController = fxmlLoader.getController();
+            openCalendarController.init(user);
 
             Stage calendarStage = new Stage();
             calendarStage.setTitle("Trainingskalender");
             calendarStage.setScene(new Scene(root));
             calendarStage.show();
         } catch (IOException e) {
-            zeigeFehler("Kalender konnte nicht geöffnet werden.");
+            showError("Kalender konnte nicht geöffnet werden.");
         }
     }
 
     @FXML
-    private void onUebungen() {
-        User user = ermittleAktuellenUser();
+    private void onExercises() {
+        User user = getCurrentUser();
         if (user == null) {
             return;
         }
@@ -129,21 +129,21 @@ public class PrimaryController {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("uebungen.fxml"));
             Parent root = fxmlLoader.load();
 
-            UebungenController uebungenController = fxmlLoader.getController();
-            uebungenController.init(user);
+            ExercisesController exercisesController = fxmlLoader.getController();
+            exercisesController.init(user);
 
-            Stage uebungenStage = new Stage();
-            uebungenStage.setTitle("Übungen");
-            uebungenStage.setScene(new Scene(root));
-            uebungenStage.show();
+            Stage exercisesStage = new Stage();
+            exercisesStage.setTitle("Übungen");
+            exercisesStage.setScene(new Scene(root));
+            exercisesStage.show();
         } catch (IOException e) {
-            zeigeFehler("Übungen konnten nicht geöffnet werden.");
+            showError("Übungen konnten nicht geöffnet werden.");
         }
     }
 
     @FXML
-    private void onEssen() {
-        User user = ermittleAktuellenUser();
+    private void onFood() {
+        User user = getCurrentUser();
         if (user == null) {
             return;
         }
@@ -152,22 +152,22 @@ public class PrimaryController {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("essen.fxml"));
             Parent root = fxmlLoader.load();
 
-            EssenController essenController = fxmlLoader.getController();
-            essenController.init(user);
+            FoodController foodController = fxmlLoader.getController();
+            foodController.init(user);
 
-            Stage essenStage = new Stage();
-            essenStage.setTitle("Essen");
-            essenStage.initModality(Modality.APPLICATION_MODAL);
-            essenStage.setScene(new Scene(root));
-            essenStage.show();
+            Stage foodStage = new Stage();
+            foodStage.setTitle("Essen");
+            foodStage.initModality(Modality.APPLICATION_MODAL);
+            foodStage.setScene(new Scene(root));
+            foodStage.show();
         } catch (IOException e) {
-            zeigeFehler("Essen konnte nicht geöffnet werden.");
+            showError("Essen konnte nicht geöffnet werden.");
         }
     }
 
     @FXML
-    private void onDiagramm() {
-        User user = ermittleAktuellenUser();
+    private void onDiagram() {
+        User user = getCurrentUser();
         if (user == null) {
             return;
         }
@@ -176,23 +176,23 @@ public class PrimaryController {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("diagramm.fxml"));
             Parent root = fxmlLoader.load();
 
-            DiagrammController diagrammController = fxmlLoader.getController();
-            diagrammController.init(user);
+            DiagramController diagramController = fxmlLoader.getController();
+            diagramController.init(user);
 
-            Stage diagrammStage = new Stage();
-            diagrammStage.setTitle("Gewichtsverlauf");
-            diagrammStage.setScene(new Scene(root));
-            diagrammStage.show();
+            Stage diagramStage = new Stage();
+            diagramStage.setTitle("Gewichtsverlauf");
+            diagramStage.setScene(new Scene(root));
+            diagramStage.show();
         } catch (IOException e) {
-            zeigeFehler("Diagramm konnte nicht geöffnet werden.");
+            showError("Diagramm konnte nicht geöffnet werden.");
         }
     }
 
-    // liefert den User zum eingegebenen Namen, legt ihn bei Bedarf an; zeigt einen Fehler und liefert null, wenn kein Name eingegeben wurde
-    private User ermittleAktuellenUser() {
+    // returns the user for the entered name, creating it if needed; shows an error and returns null if no name was entered
+    private User getCurrentUser() {
         String name = nameField.getText();
         if (name == null || name.isBlank()) {
-            zeigeFehler("Bitte zuerst einen Namen eingeben.");
+            showError("Bitte zuerst einen Namen eingeben.");
             return null;
         }
 
@@ -207,37 +207,37 @@ public class PrimaryController {
     private void onReset() {
         User user = userService.findUserByName(nameField.getText());
         if (user != null) {
-            calendarEntryService.loescheAlleEintraegeFuerUser(user);
+            calendarEntryService.deleteAllEntriesForUser(user);
         }
 
         nameField.clear();
-        datumPicker.setValue(null);
-        altesGewichtField.clear();
-        neuesGewichtField.clear();
+        datePicker.setValue(null);
+        oldWeightField.clear();
+        newWeightField.clear();
 
         prefs.remove("name");
-        prefs.remove("altesGewicht");
+        prefs.remove("oldWeight");
 
-        if (offenerCalendarController != null) {
-            offenerCalendarController.aktualisiere();
+        if (openCalendarController != null) {
+            openCalendarController.refresh();
         }
     }
 
     @FXML
-    private void onSpeichern() {
+    private void onSave() {
         String name = nameField.getText();
-        LocalDate datum = datumPicker.getValue();
+        LocalDate date = datePicker.getValue();
 
-        if (name == null || name.isBlank() || datum == null || neuesGewichtField.getText().isBlank()) {
-            zeigeFehler("Bitte Name, Datum und Neues Gewicht ausfüllen.");
+        if (name == null || name.isBlank() || date == null || newWeightField.getText().isBlank()) {
+            showError("Bitte Name, Datum und Neues Gewicht ausfüllen.");
             return;
         }
 
-        double neuesGewicht;
+        double newWeight;
         try {
-            neuesGewicht = Double.parseDouble(neuesGewichtField.getText().replace(',', '.'));
+            newWeight = Double.parseDouble(newWeightField.getText().replace(',', '.'));
         } catch (NumberFormatException e) {
-            zeigeFehler("Neues Gewicht muss eine Zahl sein.");
+            showError("Neues Gewicht muss eine Zahl sein.");
             return;
         }
 
@@ -246,15 +246,15 @@ public class PrimaryController {
             user = userService.createUser(name, null, 0, null);
         }
 
-        // beim allerersten Eintrag wird das neue Gewicht auch als Altes Gewicht übernommen
-        if (altesGewichtField.getText().isBlank()) {
-            altesGewichtField.setText(neuesGewichtField.getText());
+        // on the very first entry, the new weight is also adopted as the old weight
+        if (oldWeightField.getText().isBlank()) {
+            oldWeightField.setText(newWeightField.getText());
         }
 
-        bodyMeasurementService.createBodyMeasurement(datum, neuesGewicht, 0, 0, user);
+        bodyMeasurementService.createBodyMeasurement(date, newWeight, 0, 0, user);
     }
 
-    private void zeigeFehler(String text) {
+    private void showError(String text) {
         Alert alert = new Alert(Alert.AlertType.WARNING, text);
         alert.showAndWait();
     }

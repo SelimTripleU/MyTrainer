@@ -33,29 +33,29 @@
                 <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
                 <Label text="Datum" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                <DatePicker fx:id="datumPicker" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
                 <Label text="Altes Gewicht" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
                 <HBox spacing="4" alignment="CENTER_LEFT" GridPane.columnIndex="3" GridPane.rowIndex="0">
-                    <TextField fx:id="altesGewichtField" editable="false" prefWidth="50"/>
+                    <TextField fx:id="oldWeightField" editable="false" prefWidth="50"/>
                     <Label text="kg"/>
                 </HBox>
 
                 <Label text="Neues Gewicht" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
                 <HBox spacing="4" alignment="CENTER_LEFT" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                    <TextField fx:id="neuesGewichtField" prefWidth="50"/>
+                    <TextField fx:id="newWeightField" prefWidth="50"/>
                     <Label text="kg"/>
                 </HBox>
 
-                <Button text="Speichern" onAction="#onSpeichern" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+                <Button text="Speichern" onAction="#onSave" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
             </GridPane>
 
             <VBox spacing="8" alignment="CENTER">
-                <Button text="BMI-Rechner" maxWidth="Infinity" onAction="#onBmiRechner"/>
-                <Button text="Kalender" maxWidth="Infinity" onAction="#onKalender"/>
-                <Button text="Übungen" maxWidth="Infinity" onAction="#onUebungen"/>
-                <Button text="Essen" maxWidth="Infinity" onAction="#onEssen"/>
-                <Button text="Diagramm" maxWidth="Infinity" onAction="#onDiagramm"/>
+                <Button text="BMI-Rechner" maxWidth="Infinity" onAction="#onBmiCalculator"/>
+                <Button text="Kalender" maxWidth="Infinity" onAction="#onCalendar"/>
+                <Button text="Übungen" maxWidth="Infinity" onAction="#onExercises"/>
+                <Button text="Essen" maxWidth="Infinity" onAction="#onFood"/>
+                <Button text="Diagramm" maxWidth="Infinity" onAction="#onDiagram"/>
                 <Button text="Reset" maxWidth="Infinity" onAction="#onReset"/>
             </VBox>
         </VBox>

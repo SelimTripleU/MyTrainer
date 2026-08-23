@@ -8,7 +8,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.controller.RezeptDetailController"
+            fx:controller="org.example.controller.RecipeDetailController"
             stylesheets="@style.css"
             prefWidth="430" prefHeight="500">
     <center>
@@ -18,12 +18,12 @@
             </BorderPane.margin>
 
             <Label fx:id="nameLabel" styleClass="title" style="-fx-font-size: 20px; -fx-font-weight: bold;" wrapText="true"/>
-            <Label fx:id="naehrwerteLabel"/>
+            <Label fx:id="nutritionLabel"/>
 
             <Separator/>
 
             <Label text="Zubereitung" style="-fx-font-weight: bold;"/>
-            <Label fx:id="rezeptTextLabel" wrapText="true"/>
+            <Label fx:id="recipeTextLabel" wrapText="true"/>
         </VBox>
     </center>
 </BorderPane>

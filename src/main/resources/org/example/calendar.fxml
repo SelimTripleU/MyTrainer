@@ -18,9 +18,9 @@
             <BorderPane.margin>
                 <Insets top="16" left="16" bottom="8" right="16"/>
             </BorderPane.margin>
-            <Button text="&lt;" onAction="#onVorherigerMonat"/>
-            <Label fx:id="monatLabel" styleClass="title" style="-fx-font-size: 18px;" maxWidth="Infinity" HBox.hgrow="ALWAYS" alignment="CENTER"/>
-            <Button text="&gt;" onAction="#onNaechsterMonat"/>
+            <Button text="&lt;" onAction="#onPreviousMonth"/>
+            <Label fx:id="monthLabel" styleClass="title" style="-fx-font-size: 18px;" maxWidth="Infinity" HBox.hgrow="ALWAYS" alignment="CENTER"/>
+            <Button text="&gt;" onAction="#onNextMonth"/>
         </HBox>
     </top>
     <center>
@@ -28,7 +28,7 @@
             <BorderPane.margin>
                 <Insets left="16" right="16" bottom="16"/>
             </BorderPane.margin>
-            <GridPane fx:id="wochentageGridPane" hgap="4">
+            <GridPane fx:id="weekdaysGridPane" hgap="4">
                 <Label text="Mo" GridPane.columnIndex="0" alignment="CENTER" maxWidth="Infinity" GridPane.hgrow="ALWAYS"/>
                 <Label text="Di" GridPane.columnIndex="1" alignment="CENTER" maxWidth="Infinity" GridPane.hgrow="ALWAYS"/>
                 <Label text="Mi" GridPane.columnIndex="2" alignment="CENTER" maxWidth="Infinity" GridPane.hgrow="ALWAYS"/>
@@ -37,7 +37,7 @@
                 <Label text="Sa" GridPane.columnIndex="5" alignment="CENTER" maxWidth="Infinity" GridPane.hgrow="ALWAYS"/>
                 <Label text="So" GridPane.columnIndex="6" alignment="CENTER" maxWidth="Infinity" GridPane.hgrow="ALWAYS"/>
             </GridPane>
-            <GridPane fx:id="tageGridPane" hgap="4" vgap="4"/>
+            <GridPane fx:id="daysGridPane" hgap="4" vgap="4"/>
         </VBox>
     </center>
 </BorderPane>

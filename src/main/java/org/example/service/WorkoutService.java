@@ -16,7 +16,7 @@ public class WorkoutService {
 
         Workout workout = new Workout();
 
-        workout.setDatum(date);
+        workout.setDate(date);
         workout.setStartTime(startTime);
         workout.setEndTime(endTime);
         workout.setDuration(duration);
@@ -47,9 +47,9 @@ public class WorkoutService {
         return workoutRepository.findAll();
     }
 
-    public Workout findWorkoutByUserAndDatum(User user, LocalDate datum) {
+    public Workout findWorkoutByUserAndDate(User user, LocalDate date) {
         for (Workout workout : findAllWorkouts()) {
-            if (workout.getUser().getId() == user.getId() && workout.getDatum().equals(datum)) {
+            if (workout.getUser().getId() == user.getId() && workout.getDate().equals(date)) {
                 return workout;
             }
         }

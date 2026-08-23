@@ -12,57 +12,57 @@ public class CalendarEntryService {
 
     private final CalendarEntryRepository calendarEntryRepository = new CalendarEntryRepository();
 
-    // legt für den Tag einen neuen Eintrag an oder überschreibt den vorhandenen
-    public CalendarEntry speichereEintrag(LocalDate datum, boolean trainiert, String muskelgruppe,
-                                           int kalorien, double fett, double kohlenhydrate, User user) {
-        CalendarEntry eintrag = findeEintrag(user, datum);
+    // creates a new entry for the day or overwrites the existing one
+    public CalendarEntry saveEntry(LocalDate date, boolean trained, String muscleGroup,
+                                    int calories, double fat, double carbohydrates, User user) {
+        CalendarEntry entry = findEntry(user, date);
 
-        if (eintrag == null) {
-            eintrag = new CalendarEntry();
-            eintrag.setDatum(datum);
-            eintrag.setUser(user);
+        if (entry == null) {
+            entry = new CalendarEntry();
+            entry.setDate(date);
+            entry.setUser(user);
         }
 
-        eintrag.setTrainiert(trainiert);
-        eintrag.setMuskelgruppe(muskelgruppe);
-        eintrag.setKalorien(kalorien);
-        eintrag.setFett(fett);
-        eintrag.setKohlenhydrate(kohlenhydrate);
+        entry.setTrained(trained);
+        entry.setMuscleGroup(muscleGroup);
+        entry.setCalories(calories);
+        entry.setFat(fat);
+        entry.setCarbohydrates(carbohydrates);
 
-        if (eintrag.getId() == 0) {
-            calendarEntryRepository.save(eintrag);
+        if (entry.getId() == 0) {
+            calendarEntryRepository.save(entry);
         } else {
-            calendarEntryRepository.update(eintrag);
+            calendarEntryRepository.update(entry);
         }
 
-        return eintrag;
+        return entry;
     }
 
-    public CalendarEntry findeEintrag(User user, LocalDate datum) {
-        for (CalendarEntry eintrag : calendarEntryRepository.findAll()) {
-            if (eintrag.getUser().getId() == user.getId() && eintrag.getDatum().equals(datum)) {
-                return eintrag;
+    public CalendarEntry findEntry(User user, LocalDate date) {
+        for (CalendarEntry entry : calendarEntryRepository.findAll()) {
+            if (entry.getUser().getId() == user.getId() && entry.getDate().equals(date)) {
+                return entry;
             }
         }
 
         return null;
     }
 
-    public List<CalendarEntry> findeEintraegeFuerUser(User user) {
-        List<CalendarEntry> eintraege = new ArrayList<>();
+    public List<CalendarEntry> findEntriesForUser(User user) {
+        List<CalendarEntry> entries = new ArrayList<>();
 
-        for (CalendarEntry eintrag : calendarEntryRepository.findAll()) {
-            if (eintrag.getUser().getId() == user.getId()) {
-                eintraege.add(eintrag);
+        for (CalendarEntry entry : calendarEntryRepository.findAll()) {
+            if (entry.getUser().getId() == user.getId()) {
+                entries.add(entry);
             }
         }
 
-        return eintraege;
+        return entries;
     }
 
-    public void loescheAlleEintraegeFuerUser(User user) {
-        for (CalendarEntry eintrag : findeEintraegeFuerUser(user)) {
-            calendarEntryRepository.delete(eintrag);
+    public void deleteAllEntriesForUser(User user) {
+        for (CalendarEntry entry : findEntriesForUser(user)) {
+            calendarEntryRepository.delete(entry);
         }
     }
 }

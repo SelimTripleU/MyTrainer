@@ -13,7 +13,7 @@ public class Workout {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private LocalDate datum;
+    private LocalDate date;
     private LocalTime startTime;
     private LocalTime endTime;
     private int duration;
@@ -29,10 +29,10 @@ public class Workout {
     public Workout() {
     }
 
-    public Workout(int id, LocalDate datum, LocalTime startTime, LocalTime endTime, int duration,
+    public Workout(int id, LocalDate date, LocalTime startTime, LocalTime endTime, int duration,
                    String notes, User user, List<WorkoutExercise> workoutExercises) {
         this.id = id;
-        this.datum = datum;
+        this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
         this.duration = duration;
@@ -49,12 +49,12 @@ public class Workout {
         this.id = id;
     }
 
-    public LocalDate getDatum() {
-        return datum;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setDatum(LocalDate datum) {
-        this.datum = datum;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public LocalTime getStartTime() {

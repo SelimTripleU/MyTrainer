@@ -44,15 +44,15 @@ public class WorkoutExerciseService {
     }
 
     public List<WorkoutExercise> findWorkoutExercisesByWorkout(Workout workout) {
-        List<WorkoutExercise> ergebnis = new ArrayList<>();
+        List<WorkoutExercise> result = new ArrayList<>();
 
         for (WorkoutExercise workoutExercise : workoutExerciseRepository.findAll()) {
             if (workoutExercise.getWorkout().getId() == workout.getId()) {
-                ergebnis.add(workoutExercise);
+                result.add(workoutExercise);
             }
         }
 
-        return ergebnis;
+        return result;
     }
 
 }

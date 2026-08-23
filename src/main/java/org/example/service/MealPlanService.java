@@ -14,7 +14,7 @@ public class MealPlanService {
 
         MealPlan mealPlan = new MealPlan();
 
-        mealPlan.setDatum(date);
+        mealPlan.setDate(date);
         mealPlan.setTargetCalories(targetCalories);
         mealPlan.setUser(user);
 

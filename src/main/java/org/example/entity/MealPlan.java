@@ -11,7 +11,7 @@ public class MealPlan {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int id;
 
-        private LocalDate datum;
+        private LocalDate date;
         private int targetCalories;
 
         @ManyToOne
@@ -24,9 +24,9 @@ public class MealPlan {
         public MealPlan() {
         }
 
-        public MealPlan(int id, LocalDate datum, int targetCalories, User user, List<Meal> meals) {
+        public MealPlan(int id, LocalDate date, int targetCalories, User user, List<Meal> meals) {
                 this.id = id;
-                this.datum = datum;
+                this.date = date;
                 this.targetCalories = targetCalories;
                 this.user = user;
                 this.meals = meals;
@@ -40,12 +40,12 @@ public class MealPlan {
                 this.id = id;
         }
 
-        public LocalDate getDatum() {
-                return datum;
+        public LocalDate getDate() {
+                return date;
         }
 
-        public void setDatum(LocalDate datum) {
-                this.datum = datum;
+        public void setDate(LocalDate date) {
+                this.date = date;
         }
 
         public int getTargetCalories() {

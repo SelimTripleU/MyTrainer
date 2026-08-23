@@ -43,19 +43,19 @@ public class ExerciseService {
     }
 
     public List<Exercise> findExercisesByMuscleGroup(String muscleGroup) {
-        List<Exercise> ergebnis = new ArrayList<>();
+        List<Exercise> result = new ArrayList<>();
 
         for (Exercise exercise : findAllExercises()) {
             if (exercise.getMuscleGroup().equals(muscleGroup)) {
-                ergebnis.add(exercise);
+                result.add(exercise);
             }
         }
 
-        return ergebnis;
+        return result;
     }
 
-    // legt beim allerersten Start ein paar Standardübungen je Muskelgruppe an, damit die Übungsauswahl nicht leer ist
-    public void seedStandardUebungenFallsLeer() {
+    // creates a handful of default exercises per muscle group on first start, so the selection isn't empty
+    public void seedStandardExercisesIfEmpty() {
         if (!findAllExercises().isEmpty()) {
             return;
         }

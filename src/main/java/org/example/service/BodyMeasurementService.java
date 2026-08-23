@@ -17,7 +17,7 @@ public class BodyMeasurementService {
 
        BodyMeasurement bodyMeasurement = new BodyMeasurement();
 
-       bodyMeasurement.setDatum(date);
+       bodyMeasurement.setDate(date);
        bodyMeasurement.setWeight(weight);
        bodyMeasurement.setHeight(height);
        bodyMeasurement.setBodyfat(bodyfat);
@@ -44,17 +44,17 @@ public class BodyMeasurementService {
    }
 
    public List<BodyMeasurement> findAllByUser(User user) {
-       List<BodyMeasurement> ergebnis = new ArrayList<>();
+       List<BodyMeasurement> result = new ArrayList<>();
 
        for (BodyMeasurement bodyMeasurement : bodyMeasurementRepository.findAll()) {
            if (bodyMeasurement.getUser().getId() == user.getId()) {
-               ergebnis.add(bodyMeasurement);
+               result.add(bodyMeasurement);
            }
        }
 
-       ergebnis.sort(Comparator.comparing(BodyMeasurement::getDatum));
+       result.sort(Comparator.comparing(BodyMeasurement::getDate));
 
-       return ergebnis;
+       return result;
    }
 
 }

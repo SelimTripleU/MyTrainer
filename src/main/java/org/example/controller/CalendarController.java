@@ -26,92 +26,92 @@ import java.util.Map;
 public class CalendarController {
 
     @FXML
-    private Label monatLabel;
+    private Label monthLabel;
 
     @FXML
-    private GridPane tageGridPane;
+    private GridPane daysGridPane;
 
     private final CalendarEntryService calendarEntryService = new CalendarEntryService();
 
     private User user;
-    private YearMonth aktuellerMonat;
+    private YearMonth currentMonth;
 
     public void init(User user) {
         this.user = user;
-        this.aktuellerMonat = YearMonth.now();
-        zeichneMonat();
+        this.currentMonth = YearMonth.now();
+        drawMonth();
     }
 
-    // wird von PrimaryController beim Reset aufgerufen, damit der Kalender die gelöschten Einträge nicht mehr anzeigt
-    public void aktualisiere() {
-        zeichneMonat();
-    }
-
-    @FXML
-    private void onVorherigerMonat() {
-        aktuellerMonat = aktuellerMonat.minusMonths(1);
-        zeichneMonat();
+    // called by PrimaryController on reset, so the calendar no longer shows the deleted entries
+    public void refresh() {
+        drawMonth();
     }
 
     @FXML
-    private void onNaechsterMonat() {
-        aktuellerMonat = aktuellerMonat.plusMonths(1);
-        zeichneMonat();
+    private void onPreviousMonth() {
+        currentMonth = currentMonth.minusMonths(1);
+        drawMonth();
     }
 
-    private void zeichneMonat() {
-        String monatsName = aktuellerMonat.getMonth().getDisplayName(TextStyle.FULL, Locale.GERMAN);
-        monatLabel.setText(monatsName.substring(0, 1).toUpperCase() + monatsName.substring(1) + " " + aktuellerMonat.getYear());
+    @FXML
+    private void onNextMonth() {
+        currentMonth = currentMonth.plusMonths(1);
+        drawMonth();
+    }
 
-        tageGridPane.getChildren().clear();
+    private void drawMonth() {
+        String monthName = currentMonth.getMonth().getDisplayName(TextStyle.FULL, Locale.GERMAN);
+        monthLabel.setText(monthName.substring(0, 1).toUpperCase() + monthName.substring(1) + " " + currentMonth.getYear());
 
-        Map<LocalDate, CalendarEntry> eintraegeNachDatum = new HashMap<>();
-        for (CalendarEntry eintrag : calendarEntryService.findeEintraegeFuerUser(user)) {
-            eintraegeNachDatum.put(eintrag.getDatum(), eintrag);
+        daysGridPane.getChildren().clear();
+
+        Map<LocalDate, CalendarEntry> entriesByDate = new HashMap<>();
+        for (CalendarEntry entry : calendarEntryService.findEntriesForUser(user)) {
+            entriesByDate.put(entry.getDate(), entry);
         }
 
-        LocalDate ersterTagDesMonats = aktuellerMonat.atDay(1);
-        int spaltenOffset = ersterTagDesMonats.getDayOfWeek().getValue() - DayOfWeek.MONDAY.getValue();
+        LocalDate firstDayOfMonth = currentMonth.atDay(1);
+        int columnOffset = firstDayOfMonth.getDayOfWeek().getValue() - DayOfWeek.MONDAY.getValue();
 
-        for (int tag = 1; tag <= aktuellerMonat.lengthOfMonth(); tag++) {
-            LocalDate datum = aktuellerMonat.atDay(tag);
-            int position = spaltenOffset + tag - 1;
-            int spalte = position % 7;
-            int zeile = position / 7;
+        for (int day = 1; day <= currentMonth.lengthOfMonth(); day++) {
+            LocalDate date = currentMonth.atDay(day);
+            int position = columnOffset + day - 1;
+            int column = position % 7;
+            int row = position / 7;
 
-            Button tagButton = new Button(String.valueOf(tag));
-            tagButton.getStyleClass().add("day-button");
-            tagButton.setPrefSize(48, 36);
-            tagButton.setMaxWidth(Double.MAX_VALUE);
+            Button dayButton = new Button(String.valueOf(day));
+            dayButton.getStyleClass().add("day-button");
+            dayButton.setPrefSize(48, 36);
+            dayButton.setMaxWidth(Double.MAX_VALUE);
 
-            CalendarEntry eintrag = eintraegeNachDatum.get(datum);
-            if (eintrag != null) {
-                tagButton.setStyle(eintrag.isTrainiert()
+            CalendarEntry entry = entriesByDate.get(date);
+            if (entry != null) {
+                dayButton.setStyle(entry.isTrained()
                         ? "-fx-background-color: #66bb6a;"
                         : "-fx-background-color: #ef5350;");
             }
 
-            tagButton.setOnAction(e -> oeffneTagDialog(datum));
+            dayButton.setOnAction(e -> openDayDialog(date));
 
-            tageGridPane.add(tagButton, spalte, zeile);
+            daysGridPane.add(dayButton, column, row);
         }
     }
 
-    private void oeffneTagDialog(LocalDate datum) {
+    private void openDayDialog(LocalDate date) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("tag.fxml"));
             Parent root = fxmlLoader.load();
 
-            TagController tagController = fxmlLoader.getController();
-            tagController.init(user, datum, calendarEntryService.findeEintrag(user, datum));
+            DayController dayController = fxmlLoader.getController();
+            dayController.init(user, date, calendarEntryService.findEntry(user, date));
 
-            Stage tagStage = new Stage();
-            tagStage.setTitle("Tag bearbeiten");
-            tagStage.initModality(Modality.APPLICATION_MODAL);
-            tagStage.setScene(new Scene(root));
-            tagStage.showAndWait();
+            Stage dayStage = new Stage();
+            dayStage.setTitle("Tag bearbeiten");
+            dayStage.initModality(Modality.APPLICATION_MODAL);
+            dayStage.setScene(new Scene(root));
+            dayStage.showAndWait();
 
-            zeichneMonat();
+            drawMonth();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
