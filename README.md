@@ -33,6 +33,8 @@ Dieses Projekjt ist eine Java-Anwendung zur Verwaltung von Trainingsplänen, Mah
 
 -DAO-Pattern
 
+-JavaFX
+
 ## Projektstruktur 
 
 -entity - Enthält die Entity-Klassen
@@ -44,6 +46,8 @@ Dieses Projekjt ist eine Java-Anwendung zur Verwaltung von Trainingsplänen, Mah
 -service - Enthält die Geschäftslogik
 
 -main - Startpunkt der Anwendung
+
+-controller - Die Einzelnen Fenster im Programm
 
 
 ## Skizzenleiter
