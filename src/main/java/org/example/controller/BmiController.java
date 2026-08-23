@@ -6,6 +6,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
+import org.example.entity.User;
+import org.example.service.ErnaehrungsZielService;
 
 import java.util.Locale;
 
@@ -47,11 +49,19 @@ public class BmiController {
     @FXML
     private Label kohlenhydrateLabel;
 
+    private final ErnaehrungsZielService ernaehrungsZielService = new ErnaehrungsZielService();
+
+    private User user;
+
     // Aktivitätsfaktoren nach der PAL-Skala, mit denen der Grundumsatz auf den Gesamtkalorienbedarf hochgerechnet wird
     private static final double[] AKTIVITAETS_FAKTOREN = {1.2, 1.375, 1.55, 1.725, 1.9};
 
     // übliches Kaloriendefizit bzw. -überschuss für eine moderate, gesunde Gewichtsveränderung
     private static final double[] ZIEL_KALORIEN_ANPASSUNG = {-500, 0, 500};
+
+    public void init(User user) {
+        this.user = user;
+    }
 
     @FXML
     private void initialize() {
@@ -149,6 +159,10 @@ public class BmiController {
         proteinLabel.setText(String.format(Locale.GERMANY, "Protein: %.0f g/Tag", proteinG));
         fettLabel.setText(String.format(Locale.GERMANY, "Fett: %.0f g/Tag", fettG));
         kohlenhydrateLabel.setText(String.format(Locale.GERMANY, "Kohlenhydrate: %.0f g/Tag", kohlenhydrateG));
+
+        // damit im Essen-Fenster daran erinnert werden kann, wie viel man sich täglich nehmen darf
+        ernaehrungsZielService.speichereZiel((int) Math.round(kalorienBedarf), proteinG, fettG, kohlenhydrateG,
+                zielChoiceBox.getValue(), user);
     }
 
     private String bmiKategorie(double bmi) {

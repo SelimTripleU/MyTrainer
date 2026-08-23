@@ -73,9 +73,17 @@ public class PrimaryController {
 
     @FXML
     private void onBmiRechner() {
+        User user = ermittleAktuellenUser();
+        if (user == null) {
+            return;
+        }
+
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("bmi.fxml"));
             Parent root = fxmlLoader.load();
+
+            BmiController bmiController = fxmlLoader.getController();
+            bmiController.init(user);
 
             Stage bmiStage = new Stage();
             bmiStage.setTitle("BMI-Rechner");
@@ -89,15 +97,9 @@ public class PrimaryController {
 
     @FXML
     private void onKalender() {
-        String name = nameField.getText();
-        if (name == null || name.isBlank()) {
-            zeigeFehler("Bitte zuerst einen Namen eingeben.");
-            return;
-        }
-
-        User user = userService.findUserByName(name);
+        User user = ermittleAktuellenUser();
         if (user == null) {
-            user = userService.createUser(name, null, 0, null);
+            return;
         }
 
         try {
@@ -118,15 +120,9 @@ public class PrimaryController {
 
     @FXML
     private void onUebungen() {
-        String name = nameField.getText();
-        if (name == null || name.isBlank()) {
-            zeigeFehler("Bitte zuerst einen Namen eingeben.");
-            return;
-        }
-
-        User user = userService.findUserByName(name);
+        User user = ermittleAktuellenUser();
         if (user == null) {
-            user = userService.createUser(name, null, 0, null);
+            return;
         }
 
         try {
@@ -143,6 +139,45 @@ public class PrimaryController {
         } catch (IOException e) {
             zeigeFehler("Übungen konnten nicht geöffnet werden.");
         }
+    }
+
+    @FXML
+    private void onEssen() {
+        User user = ermittleAktuellenUser();
+        if (user == null) {
+            return;
+        }
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("essen.fxml"));
+            Parent root = fxmlLoader.load();
+
+            EssenController essenController = fxmlLoader.getController();
+            essenController.init(user);
+
+            Stage essenStage = new Stage();
+            essenStage.setTitle("Essen");
+            essenStage.initModality(Modality.APPLICATION_MODAL);
+            essenStage.setScene(new Scene(root));
+            essenStage.show();
+        } catch (IOException e) {
+            zeigeFehler("Essen konnte nicht geöffnet werden.");
+        }
+    }
+
+    // liefert den User zum eingegebenen Namen, legt ihn bei Bedarf an; zeigt einen Fehler und liefert null, wenn kein Name eingegeben wurde
+    private User ermittleAktuellenUser() {
+        String name = nameField.getText();
+        if (name == null || name.isBlank()) {
+            zeigeFehler("Bitte zuerst einen Namen eingeben.");
+            return null;
+        }
+
+        User user = userService.findUserByName(name);
+        if (user == null) {
+            user = userService.createUser(name, null, 0, null);
+        }
+        return user;
     }
 
     @FXML

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.controller.RezeptDetailController"
+            prefWidth="360" prefHeight="420">
+    <center>
+        <VBox spacing="12">
+            <BorderPane.margin>
+                <Insets top="20" left="20" bottom="20" right="20"/>
+            </BorderPane.margin>
+
+            <Label fx:id="nameLabel" style="-fx-font-size: 20px; -fx-font-weight: bold;" wrapText="true"/>
+            <Label fx:id="naehrwerteLabel"/>
+
+            <Separator/>
+
+            <Label text="Zubereitung" style="-fx-font-weight: bold;"/>
+            <Label fx:id="rezeptTextLabel" wrapText="true"/>
+        </VBox>
+    </center>
+</BorderPane>
