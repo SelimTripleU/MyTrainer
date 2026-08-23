@@ -27,6 +27,9 @@ public class BmiController {
     private ChoiceBox<String> aktivitaetChoiceBox;
 
     @FXML
+    private ChoiceBox<String> zielChoiceBox;
+
+    @FXML
     private Label bmiLabel;
 
     @FXML
@@ -47,6 +50,9 @@ public class BmiController {
     // Aktivitätsfaktoren nach der PAL-Skala, mit denen der Grundumsatz auf den Gesamtkalorienbedarf hochgerechnet wird
     private static final double[] AKTIVITAETS_FAKTOREN = {1.2, 1.375, 1.55, 1.725, 1.9};
 
+    // übliches Kaloriendefizit bzw. -überschuss für eine moderate, gesunde Gewichtsveränderung
+    private static final double[] ZIEL_KALORIEN_ANPASSUNG = {-500, 0, 500};
+
     @FXML
     private void initialize() {
         geschlechtChoiceBox.getItems().addAll("Männlich", "Weiblich");
@@ -59,6 +65,9 @@ public class BmiController {
                 "Aktiv (6-7x Sport/Woche)",
                 "Sehr aktiv (körperliche Arbeit/Leistungssport)");
         aktivitaetChoiceBox.setValue("Leicht aktiv (1-3x Sport/Woche)");
+
+        zielChoiceBox.getItems().addAll("Abnehmen", "Gewicht halten", "Zunehmen");
+        zielChoiceBox.setValue("Gewicht halten");
 
         // Alter und Größe: nur ganze Zahlen, damit man sich nicht vertippen kann
         alterField.setTextFormatter(new TextFormatter<>(this::nurGanzeZahlen));
@@ -121,7 +130,10 @@ public class BmiController {
                 : 10 * gewichtKg + 6.25 * groesseCm - 5 * alter - 161;
 
         double aktivitaetsFaktor = AKTIVITAETS_FAKTOREN[aktivitaetChoiceBox.getSelectionModel().getSelectedIndex()];
-        double kalorienBedarf = grundumsatz * aktivitaetsFaktor;
+        double erhaltungsKalorien = grundumsatz * aktivitaetsFaktor;
+
+        double zielAnpassung = ZIEL_KALORIEN_ANPASSUNG[zielChoiceBox.getSelectionModel().getSelectedIndex()];
+        double kalorienBedarf = erhaltungsKalorien + zielAnpassung;
 
         // Nährstoffverteilung: 1,8g Protein pro kg Körpergewicht, 25% der Kalorien als Fett, Rest Kohlenhydrate
         double proteinG = gewichtKg * 1.8;
@@ -133,7 +145,7 @@ public class BmiController {
         double kohlenhydrateKcal = kalorienBedarf - proteinKcal - fettKcal;
         double kohlenhydrateG = kohlenhydrateKcal / 4;
 
-        kalorienLabel.setText(String.format(Locale.GERMANY, "Kalorienbedarf: %.0f kcal/Tag", kalorienBedarf));
+        kalorienLabel.setText(String.format(Locale.GERMANY, "Kalorienziel: %.0f kcal/Tag", kalorienBedarf));
         proteinLabel.setText(String.format(Locale.GERMANY, "Protein: %.0f g/Tag", proteinG));
         fettLabel.setText(String.format(Locale.GERMANY, "Fett: %.0f g/Tag", fettG));
         kohlenhydrateLabel.setText(String.format(Locale.GERMANY, "Kohlenhydrate: %.0f g/Tag", kohlenhydrateG));

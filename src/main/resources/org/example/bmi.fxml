@@ -37,6 +37,9 @@
 
                 <Label text="Aktivitätslevel" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
                 <ChoiceBox fx:id="aktivitaetChoiceBox" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+                <Label text="Ziel" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                <ChoiceBox fx:id="zielChoiceBox" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
             </GridPane>
 
             <Button text="Berechnen" onAction="#onBerechnen" maxWidth="Infinity"/>
