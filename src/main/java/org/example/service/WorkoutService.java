@@ -6,6 +6,7 @@ import org.example.entity.Workout;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 public class WorkoutService {
 
@@ -40,6 +41,20 @@ public class WorkoutService {
 
     public Workout findWorkoutById(int id) {
         return workoutRepository.findById(Long.valueOf(id));
+    }
+
+    public List<Workout> findAllWorkouts() {
+        return workoutRepository.findAll();
+    }
+
+    public Workout findWorkoutByUserAndDatum(User user, LocalDate datum) {
+        for (Workout workout : findAllWorkouts()) {
+            if (workout.getUser().getId() == user.getId() && workout.getDatum().equals(datum)) {
+                return workout;
+            }
+        }
+
+        return null;
     }
 
 }

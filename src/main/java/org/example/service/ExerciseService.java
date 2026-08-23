@@ -3,6 +3,9 @@ package org.example.service;
 import org.example.dao.ExerciseRepository;
 import org.example.entity.Exercise;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ExerciseService {
 
     private final ExerciseRepository exerciseRepository = new ExerciseRepository();
@@ -33,6 +36,75 @@ public class ExerciseService {
 
     public Exercise findExerciseById(int id) {
         return exerciseRepository.findById(Long.valueOf(id));
+    }
+
+    public List<Exercise> findAllExercises() {
+        return exerciseRepository.findAll();
+    }
+
+    public List<Exercise> findExercisesByMuscleGroup(String muscleGroup) {
+        List<Exercise> ergebnis = new ArrayList<>();
+
+        for (Exercise exercise : findAllExercises()) {
+            if (exercise.getMuscleGroup().equals(muscleGroup)) {
+                ergebnis.add(exercise);
+            }
+        }
+
+        return ergebnis;
+    }
+
+    // legt beim allerersten Start ein paar Standardübungen je Muskelgruppe an, damit die Übungsauswahl nicht leer ist
+    public void seedStandardUebungenFallsLeer() {
+        if (!findAllExercises().isEmpty()) {
+            return;
+        }
+
+        createExercise("Bankdrücken", "Brust", null);
+        createExercise("Schrägbankdrücken", "Brust", null);
+        createExercise("Liegestütze", "Brust", null);
+        createExercise("Butterfly", "Brust", null);
+        createExercise("Kabelzug Brust (Gym)", "Brust", null);
+        createExercise("Bankdrücken Maschine (Gym)", "Brust", null);
+
+        createExercise("Klimmzüge", "Rücken", null);
+        createExercise("Rudern", "Rücken", null);
+        createExercise("Latzug", "Rücken", null);
+        createExercise("Kreuzheben", "Rücken", null);
+        createExercise("Rudermaschine (Gym)", "Rücken", null);
+        createExercise("T-Bar Rudern (Gym)", "Rücken", null);
+
+        createExercise("Kniebeugen", "Beine", null);
+        createExercise("Beinpresse", "Beine", null);
+        createExercise("Ausfallschritte", "Beine", null);
+        createExercise("Beinstrecker", "Beine", null);
+        createExercise("Beinbeuger Maschine (Gym)", "Beine", null);
+        createExercise("Adduktorenmaschine (Gym)", "Beine", null);
+
+        createExercise("Schulterdrücken", "Schultern", null);
+        createExercise("Seitheben", "Schultern", null);
+        createExercise("Frontheben", "Schultern", null);
+        createExercise("Schulterpresse Maschine (Gym)", "Schultern", null);
+        createExercise("Kabelzug Seitheben (Gym)", "Schultern", null);
+
+        createExercise("Bizepscurls", "Arme", null);
+        createExercise("Trizepsdrücken", "Arme", null);
+        createExercise("Hammercurls", "Arme", null);
+        createExercise("Bizeps Kabelzug (Gym)", "Arme", null);
+        createExercise("Trizeps Kabelzug (Gym)", "Arme", null);
+        createExercise("Dip-Maschine (Gym)", "Arme", null);
+
+        createExercise("Crunches", "Bauch", null);
+        createExercise("Plank", "Bauch", null);
+        createExercise("Beinheben", "Bauch", null);
+        createExercise("Bauchmaschine (Gym)", "Bauch", null);
+        createExercise("Kabelzug Crunches (Gym)", "Bauch", null);
+
+        createExercise("Burpees", "Ganzkörper", null);
+        createExercise("Kettlebell Swings", "Ganzkörper", null);
+        createExercise("Rudergerät (Gym)", "Ganzkörper", null);
+        createExercise("Cross-Trainer (Gym)", "Ganzkörper", null);
+        createExercise("Multipresse (Gym)", "Ganzkörper", null);
     }
 
 }

@@ -117,6 +117,35 @@ public class PrimaryController {
     }
 
     @FXML
+    private void onUebungen() {
+        String name = nameField.getText();
+        if (name == null || name.isBlank()) {
+            zeigeFehler("Bitte zuerst einen Namen eingeben.");
+            return;
+        }
+
+        User user = userService.findUserByName(name);
+        if (user == null) {
+            user = userService.createUser(name, null, 0, null);
+        }
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("uebungen.fxml"));
+            Parent root = fxmlLoader.load();
+
+            UebungenController uebungenController = fxmlLoader.getController();
+            uebungenController.init(user);
+
+            Stage uebungenStage = new Stage();
+            uebungenStage.setTitle("Übungen");
+            uebungenStage.setScene(new Scene(root));
+            uebungenStage.show();
+        } catch (IOException e) {
+            zeigeFehler("Übungen konnten nicht geöffnet werden.");
+        }
+    }
+
+    @FXML
     private void onReset() {
         User user = userService.findUserByName(nameField.getText());
         if (user != null) {

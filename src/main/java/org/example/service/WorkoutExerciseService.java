@@ -5,6 +5,9 @@ import org.example.entity.Exercise;
 import org.example.entity.Workout;
 import org.example.entity.WorkoutExercise;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class WorkoutExerciseService {
 
     private final WorkoutExerciseRepository workoutExerciseRepository = new WorkoutExerciseRepository();
@@ -38,6 +41,18 @@ public class WorkoutExerciseService {
 
     public WorkoutExercise findWorkoutExerciseById(int id) {
         return workoutExerciseRepository.findById(Long.valueOf(id));
+    }
+
+    public List<WorkoutExercise> findWorkoutExercisesByWorkout(Workout workout) {
+        List<WorkoutExercise> ergebnis = new ArrayList<>();
+
+        for (WorkoutExercise workoutExercise : workoutExerciseRepository.findAll()) {
+            if (workoutExercise.getWorkout().getId() == workout.getId()) {
+                ergebnis.add(workoutExercise);
+            }
+        }
+
+        return ergebnis;
     }
 
 }
