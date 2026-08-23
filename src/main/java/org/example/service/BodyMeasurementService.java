@@ -5,6 +5,9 @@ import org.example.entity.BodyMeasurement;
 import org.example.entity.User;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 public class BodyMeasurementService {
 
@@ -38,6 +41,20 @@ public class BodyMeasurementService {
 
    public BodyMeasurement findBodyMeasurementById(int id) {
        return bodyMeasurementRepository.findById(Long.valueOf(id));
+   }
+
+   public List<BodyMeasurement> findAllByUser(User user) {
+       List<BodyMeasurement> ergebnis = new ArrayList<>();
+
+       for (BodyMeasurement bodyMeasurement : bodyMeasurementRepository.findAll()) {
+           if (bodyMeasurement.getUser().getId() == user.getId()) {
+               ergebnis.add(bodyMeasurement);
+           }
+       }
+
+       ergebnis.sort(Comparator.comparing(BodyMeasurement::getDatum));
+
+       return ergebnis;
    }
 
 }

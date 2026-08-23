@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.controller.DiagrammController"
+            prefWidth="520" prefHeight="760">
+    <top>
+        <Label text="Diagramme" style="-fx-font-size: 22px;">
+            <BorderPane.margin>
+                <Insets top="20" left="20" bottom="10" right="20"/>
+            </BorderPane.margin>
+        </Label>
+    </top>
+    <center>
+        <ScrollPane fitToWidth="true">
+            <VBox spacing="10">
+                <padding>
+                    <Insets left="20" right="20" bottom="20"/>
+                </padding>
+
+                <Label text="Gewichtsverlauf" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                <StackPane prefHeight="300">
+                    <LineChart fx:id="gewichtChart">
+                        <xAxis>
+                            <CategoryAxis fx:id="xAchse" label="Datum"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis fx:id="yAchse" label="Gewicht (kg)" forceZeroInRange="false"/>
+                        </yAxis>
+                    </LineChart>
+                    <Label fx:id="gewichtLeerHinweisLabel"
+                           text="Noch keine Gewichtsdaten vorhanden. Bitte im Hauptfenster ein Gewicht speichern."
+                           wrapText="true" visible="false" managed="false"/>
+                </StackPane>
+
+                <Label text="Trainingsfrequenz" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                <StackPane prefHeight="300">
+                    <BarChart fx:id="trainingsChart">
+                        <xAxis>
+                            <CategoryAxis fx:id="trainingsXAchse" label="Monat"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis fx:id="trainingsYAchse" label="Trainierte Tage"/>
+                        </yAxis>
+                    </BarChart>
+                    <Label fx:id="trainingsLeerHinweisLabel"
+                           text="Noch keine Kalender-Einträge vorhanden. Bitte im Kalender Trainingstage eintragen."
+                           wrapText="true" visible="false" managed="false"/>
+                </StackPane>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

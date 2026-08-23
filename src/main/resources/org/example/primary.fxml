@@ -54,7 +54,7 @@
                 <Button text="Kalender" maxWidth="Infinity" onAction="#onKalender"/>
                 <Button text="Übungen" maxWidth="Infinity" onAction="#onUebungen"/>
                 <Button text="Essen" maxWidth="Infinity" onAction="#onEssen"/>
-                <Button text="Diagramm" maxWidth="Infinity"/>
+                <Button text="Diagramm" maxWidth="Infinity" onAction="#onDiagramm"/>
                 <Button text="Reset" maxWidth="Infinity" onAction="#onReset"/>
             </VBox>
         </VBox>

@@ -165,6 +165,29 @@ public class PrimaryController {
         }
     }
 
+    @FXML
+    private void onDiagramm() {
+        User user = ermittleAktuellenUser();
+        if (user == null) {
+            return;
+        }
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("diagramm.fxml"));
+            Parent root = fxmlLoader.load();
+
+            DiagrammController diagrammController = fxmlLoader.getController();
+            diagrammController.init(user);
+
+            Stage diagrammStage = new Stage();
+            diagrammStage.setTitle("Gewichtsverlauf");
+            diagrammStage.setScene(new Scene(root));
+            diagrammStage.show();
+        } catch (IOException e) {
+            zeigeFehler("Diagramm konnte nicht geöffnet werden.");
+        }
+    }
+
     // liefert den User zum eingegebenen Namen, legt ihn bei Bedarf an; zeigt einen Fehler und liefert null, wenn kein Name eingegeben wurde
     private User ermittleAktuellenUser() {
         String name = nameField.getText();
