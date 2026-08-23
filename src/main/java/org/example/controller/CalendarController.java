@@ -42,7 +42,7 @@ public class CalendarController {
         drawMonth();
     }
 
-    // called by PrimaryController on reset, so the calendar no longer shows the deleted entries
+    // wird von PrimaryController beim Reset aufgerufen, damit der Kalender die gelöschten Einträge nicht mehr anzeigt
     public void refresh() {
         drawMonth();
     }

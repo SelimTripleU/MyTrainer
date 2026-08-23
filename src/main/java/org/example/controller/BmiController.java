@@ -53,10 +53,10 @@ public class BmiController {
 
     private User user;
 
-    // activity factors on the PAL scale, used to scale the basal metabolic rate up to total calorie needs
+    // Aktivitätsfaktoren nach der PAL-Skala, mit denen der Grundumsatz auf den Gesamtkalorienbedarf hochgerechnet wird
     private static final double[] ACTIVITY_FACTORS = {1.2, 1.375, 1.55, 1.725, 1.9};
 
-    // typical calorie deficit/surplus for a moderate, healthy weight change
+    // übliches Kaloriendefizit bzw. -überschuss für eine moderate, gesunde Gewichtsveränderung
     private static final double[] GOAL_CALORIE_ADJUSTMENT = {-500, 0, 500};
 
     public void init(User user) {
@@ -79,11 +79,11 @@ public class BmiController {
         goalChoiceBox.getItems().addAll("Abnehmen", "Gewicht halten", "Zunehmen");
         goalChoiceBox.setValue("Gewicht halten");
 
-        // age and height: whole numbers only, so typos aren't possible
+        // Alter und Größe: nur ganze Zahlen, damit man sich nicht vertippen kann
         ageField.setTextFormatter(new TextFormatter<>(this::wholeNumbersOnly));
         heightField.setTextFormatter(new TextFormatter<>(this::wholeNumbersOnly));
 
-        // weight: digits and one comma only, at most 4 digits total (e.g. 88,24)
+        // Gewicht: nur Ziffern und ein Komma, insgesamt maximal 4 Ziffern (z.B. 88,24)
         weightField.setTextFormatter(new TextFormatter<>(this::weightOnly));
     }
 
@@ -145,7 +145,7 @@ public class BmiController {
         double goalAdjustment = GOAL_CALORIE_ADJUSTMENT[goalChoiceBox.getSelectionModel().getSelectedIndex()];
         double calorieTarget = maintenanceCalories + goalAdjustment;
 
-        // nutrient split: 1.8g protein per kg body weight, 25% of calories as fat, rest carbohydrates
+        // Nährstoffverteilung: 1,8g Protein pro kg Körpergewicht, 25% der Kalorien als Fett, Rest Kohlenhydrate
         double proteinG = weightKg * 1.8;
         double proteinKcal = proteinG * 4;
 
@@ -160,7 +160,7 @@ public class BmiController {
         fatLabel.setText(String.format(Locale.GERMANY, "Fett: %.0f g/Tag", fatG));
         carbohydratesLabel.setText(String.format(Locale.GERMANY, "Kohlenhydrate: %.0f g/Tag", carbohydrateG));
 
-        // so the Food window can remind the user how much they're allowed to eat each day
+        // damit im Essen-Fenster daran erinnert werden kann, wie viel man sich täglich nehmen darf
         nutritionGoalService.saveGoal((int) Math.round(calorieTarget), proteinG, fatG, carbohydrateG,
                 goalChoiceBox.getValue(), user);
     }

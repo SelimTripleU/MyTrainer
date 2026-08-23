@@ -60,7 +60,7 @@ public class DayController {
         carbohydratesField.setTextFormatter(new TextFormatter<>(this::decimalNumberOnly));
     }
 
-    // called by CalendarController after loading, to pass the day and any existing data
+    // wird von CalendarController nach dem Laden aufgerufen, um Tag und ggf. vorhandene Daten zu übergeben
     public void init(User user, LocalDate date, CalendarEntry existingEntry) {
         this.user = user;
         this.date = date;

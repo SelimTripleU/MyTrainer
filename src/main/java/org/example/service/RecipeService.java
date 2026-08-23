@@ -44,7 +44,7 @@ public class RecipeService {
         return result;
     }
 
-    // creates a handful of example recipes for weight loss and weight gain on first start
+    // legt beim allerersten Start ein paar Beispielrezepte für Abnehmen und Zunehmen an
     public void seedStandardRecipesIfEmpty() {
         if (!findAllRecipes().isEmpty()) {
             return;

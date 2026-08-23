@@ -75,7 +75,7 @@ public class DiagramController {
             return;
         }
 
-        // counts per month how many days were trained vs. not trained; months without any entry are not shown
+        // zählt pro Monat, an wie vielen Tagen trainiert bzw. nicht trainiert wurde; Monate ohne jeden Eintrag werden nicht gezeigt
         Map<YearMonth, Long> trainedDaysPerMonth = new TreeMap<>();
         Map<YearMonth, Long> untrainedDaysPerMonth = new TreeMap<>();
         for (CalendarEntry entry : entries) {

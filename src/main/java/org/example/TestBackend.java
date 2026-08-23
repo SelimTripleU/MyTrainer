@@ -28,7 +28,7 @@ public class TestBackend {
         MealPlanService mealPlanService = new MealPlanService();
         MealService mealService = new MealService();
 
-        // create user
+        // User erstellen
         User user = userService.createUser(
                 "Kevin",
                 LocalDate.of(2002, 10, 22),
@@ -36,10 +36,10 @@ public class TestBackend {
                 "male"
         );
 
-        // check that the user was saved
+        // Prüfen, ob der User gespeichert wurde
         System.out.println("User ID: " + user.getId());
 
-        // create BodyMeasurement for the user
+        // BodyMeasurement für den User erstellen
         BodyMeasurement measurement = bodyMeasurementService.createBodyMeasurement(
                 LocalDate.now(),
                 85,
@@ -53,7 +53,7 @@ public class TestBackend {
         BodyMeasurement modifiedBodyMeasurement = bodyMeasurementService.findBodyMeasurementById(measurement.getId());
         System.out.println("New bodyfat: " + modifiedBodyMeasurement.getBodyfat());
 
-        // create exercise
+        // Exercise erstellen
         Exercise exercise = exerciseService.createExercise(
                 "Bankdrücken",
                 "Brust",
@@ -65,7 +65,7 @@ public class TestBackend {
         Exercise modifiedExercise = exerciseService.findExerciseById(exercise.getId());
         System.out.println("New muscle group: " + modifiedExercise.getMuscleGroup());
 
-        // create workout for Kevin
+        // Workout für Kevin erstellen
         Workout workout = workoutService.createWorkout(
                 LocalDate.now(),
                 LocalTime.of(18, 0),
@@ -80,7 +80,7 @@ public class TestBackend {
         Workout modifiedWorkout = workoutService.findWorkoutById(workout.getId());
         System.out.println("New notes: " + modifiedWorkout.getNotes());
 
-        // record WorkoutExercise, i.e. Bankdrücken, in the workout
+        // WorkoutExercise, also Bankdrücken im Workout eintragen
         WorkoutExercise workoutExercise = workoutExerciseService.createWorkoutExercise(
                 4,
                 8,
@@ -95,7 +95,7 @@ public class TestBackend {
         WorkoutExercise modifiedWorkoutExercise = workoutExerciseService.findWorkoutExerciseById(workoutExercise.getId());
         System.out.println("New weight: " + modifiedWorkoutExercise.getWeight());
 
-        // create MealPlan for Kevin
+        // MealPlan für Kevin erstellen
         MealPlan mealPlan = mealPlanService.createMealPlan(
                 LocalDate.now(),
                 2800,
@@ -107,7 +107,7 @@ public class TestBackend {
         MealPlan modifiedMealPlan = mealPlanService.findMealPlanById(mealPlan.getId());
         System.out.println("New target calories: " + modifiedMealPlan.getTargetCalories());
 
-        // create Meal in the MealPlan
+        // Meal im MealPlan erstellen
         Meal meal = mealService.createMeal(
                 "Hähnchen mit Reis",
                 650,
@@ -122,7 +122,7 @@ public class TestBackend {
         Meal modifiedMeal = mealService.findMealById(meal.getId());
         System.out.println("New calories: " + modifiedMeal.getCalories());
 
-        // finally, quickly check that delete also works
+        // Am Ende noch kurz testen, ob delete auch funktioniert
         mealService.deleteMeal(meal.getId());
         System.out.println("Meal " + meal.getId() + " was deleted");
     }

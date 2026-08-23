@@ -38,10 +38,10 @@ public class PrimaryController {
     private final BodyMeasurementService bodyMeasurementService = new BodyMeasurementService();
     private final CalendarEntryService calendarEntryService = new CalendarEntryService();
 
-    // reference to an already opened calendar, so it refreshes immediately on a reset
+    // Referenz auf einen bereits geöffneten Kalender, damit er sich bei einem Reset sofort aktualisiert
     private CalendarController openCalendarController;
 
-    // stores name and old weight locally, so they're still there on the next start
+    // speichert Name und Altes Gewicht lokal, damit sie beim nächsten Start noch da sind
     private final Preferences prefs = Preferences.userNodeForPackage(PrimaryController.class);
 
     @FXML
@@ -52,7 +52,7 @@ public class PrimaryController {
         nameField.textProperty().addListener((obs, oldValue, newValue) -> prefs.put("name", newValue));
         oldWeightField.textProperty().addListener((obs, oldValue, newValue) -> prefs.put("oldWeight", newValue));
 
-        // weight: digits and one comma only, at most 4 digits total (e.g. 88,24)
+        // Gewicht: nur Ziffern und ein Komma, insgesamt maximal 4 Ziffern (z.B. 88,24)
         newWeightField.setTextFormatter(new TextFormatter<>(this::filterWeight));
     }
 
@@ -188,7 +188,7 @@ public class PrimaryController {
         }
     }
 
-    // returns the user for the entered name, creating it if needed; shows an error and returns null if no name was entered
+    // liefert den User zum eingegebenen Namen, legt ihn bei Bedarf an; zeigt einen Fehler und liefert null, wenn kein Name eingegeben wurde
     private User getCurrentUser() {
         String name = nameField.getText();
         if (name == null || name.isBlank()) {
@@ -246,7 +246,7 @@ public class PrimaryController {
             user = userService.createUser(name, null, 0, null);
         }
 
-        // on the very first entry, the new weight is also adopted as the old weight
+        // beim allerersten Eintrag wird das neue Gewicht auch als Altes Gewicht übernommen
         if (oldWeightField.getText().isBlank()) {
             oldWeightField.setText(newWeightField.getText());
         }

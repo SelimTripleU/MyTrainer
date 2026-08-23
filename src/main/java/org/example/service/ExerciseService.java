@@ -54,7 +54,7 @@ public class ExerciseService {
         return result;
     }
 
-    // creates a handful of default exercises per muscle group on first start, so the selection isn't empty
+    // legt beim allerersten Start ein paar Standardübungen je Muskelgruppe an, damit die Übungsauswahl nicht leer ist
     public void seedStandardExercisesIfEmpty() {
         if (!findAllExercises().isEmpty()) {
             return;

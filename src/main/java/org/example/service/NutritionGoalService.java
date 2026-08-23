@@ -8,7 +8,7 @@ public class NutritionGoalService {
 
     private final NutritionGoalRepository nutritionGoalRepository = new NutritionGoalRepository();
 
-    // saves the goal last calculated in the BMI calculator for the user, overwriting an existing one
+    // speichert das zuletzt im BMI-Rechner berechnete Ziel für den User, überschreibt ein vorhandenes
     public NutritionGoal saveGoal(int calories, double protein, double fat, double carbohydrates,
                                    String goal, User user) {
         NutritionGoal nutritionGoal = findGoalForUser(user);

@@ -49,7 +49,7 @@ public class ExercisesController {
     private List<Exercise> currentExercises;
     private List<WorkoutExercise> todaysWorkoutExercises;
 
-    // suggested Sets/Repetitions/Weight/Rest as soon as an exercise is selected
+    // Vorschlag für Sets/Wiederholungen/Gewicht/Pause, sobald eine Übung ausgewählt wird
     private static final int DEFAULT_SETS = 3;
     private static final int DEFAULT_REPETITIONS = 10;
     private static final String DEFAULT_WEIGHT = "0";

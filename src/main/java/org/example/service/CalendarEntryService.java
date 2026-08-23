@@ -12,7 +12,7 @@ public class CalendarEntryService {
 
     private final CalendarEntryRepository calendarEntryRepository = new CalendarEntryRepository();
 
-    // creates a new entry for the day or overwrites the existing one
+    // legt für den Tag einen neuen Eintrag an oder überschreibt den vorhandenen
     public CalendarEntry saveEntry(LocalDate date, boolean trained, String muscleGroup,
                                     int calories, double fat, double carbohydrates, User user) {
         CalendarEntry entry = findEntry(user, date);
